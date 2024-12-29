@@ -21,11 +21,11 @@ public class LoginHappyPathsTest extends BaseTest {
         log.info("STEP 1: Not logged in user has opened the Skillo HomePage.");
         homePage.openHomePage();
 
-        log.info("STEP 2.Verify the user is on the home page ");
+        log.info("STEP 2: Verify the user is on the home page ");
         boolean isHomePageLoaded = homePage.isURLLoaded(HomePage.HOME_PAGE_URL);
         Assert.assertTrue(isHomePageLoaded, "User is not on the correct home page.");
 
-        log.info("STEP 3. Verify that the login link is presented ");
+        log.info("STEP 3: Verify that the login link is presented ");
         boolean isShownNavBarLoginLink = homePage.isNavLoginShown();
         Assert.assertTrue(isShownNavBarLoginLink);
 
@@ -39,7 +39,6 @@ public class LoginHappyPathsTest extends BaseTest {
         String actualLoginFormTitle = loginPage.getLoginPageFormTitle();
         Assert.assertEquals(actualLoginFormTitle,LOGIN_FORM_TITLE);
 
-
         log.info("STEP 7: Provide valid username");
         loginPage.provideUserName("Nasko10");
 
@@ -47,7 +46,10 @@ public class LoginHappyPathsTest extends BaseTest {
         loginPage.providePassword("Password123");
 
         log.info("STEP 9: Click on checkbox");
+        Assert.assertFalse(loginPage.isRememberMeCheckboxSelected(), "Checkbox is selected by default!");
         loginPage.clickOnRememberMeCheckbox();
+        Assert.assertTrue(loginPage.isRememberMeCheckboxSelected(), "Remember Me checkbox is not selected!");
+
 
         log.info("STEP 10: Click on loginButton");
         loginPage.clickOnLoginButton();

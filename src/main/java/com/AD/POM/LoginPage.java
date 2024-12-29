@@ -54,6 +54,11 @@ public class LoginPage extends BasePage {
         waitAndClickOnWebElement(loginFormRememberMeCheckBoxLabelText);
     }
 
+    public boolean isRememberMeCheckboxSelected() {
+        return loginFormRememberMeCheckBoxLabelText.isSelected();
+    }
+
+
     public void loginWithUSerAndPassword(String user, String password){
         provideUserName(user);
         providePassword(password);
