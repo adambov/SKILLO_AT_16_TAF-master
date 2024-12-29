@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class BasePage {
-    final String BASE_URL = "http://training.skillo-bg.com:4200";
+    final String BASE_URL = "http://training.skillo-bg.com:4300/";
     WebDriver driver;
     WebDriverWait wait;
     Logger log;
@@ -51,6 +51,7 @@ public class BasePage {
 
     public boolean isURLLoaded(String pageURL) {
         waitPageTobeFullyLoaded();
+        String fullURL = BASE_URL + pageURL;
         return wait.until(ExpectedConditions.urlContains(pageURL));
     }
 

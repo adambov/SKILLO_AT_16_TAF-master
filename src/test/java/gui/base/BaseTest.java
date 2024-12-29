@@ -31,7 +31,7 @@ public class BaseTest {
     protected final void setupTestSuite() throws IOException {
         cleanDirectory(REPORTS_DIR);
         cleanDirectory(SCREENSHOTS_DIR);
-        //We are using only chrome so there is a setup only for chrome
+
 
     }
 

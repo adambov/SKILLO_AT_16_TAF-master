@@ -50,6 +50,10 @@ public class LoginPage extends BasePage {
         waitAndClickOnWebElement(loginFormSubmitButton);
     }
 
+    public void clickOnRememberMeCheckbox(){
+        waitAndClickOnWebElement(loginFormRememberMeCheckBoxLabelText);
+    }
+
     public void loginWithUSerAndPassword(String user, String password){
         provideUserName(user);
         providePassword(password);
