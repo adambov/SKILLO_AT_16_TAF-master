@@ -24,7 +24,7 @@ public class LoginPage extends BasePage {
     private WebElement loginFormSubmitButton;
     @FindBy (xpath = "//a[contains(.,'Register')]")
     private WebElement loginFormRegisterPageLink;
-    @FindBy (css = ".toast-message.ng-star-inserted")
+    @FindBy (id = "toast-container" )
     private WebElement loginFormToastMessage;
 
     public LoginPage(WebDriver driver, Logger log) {

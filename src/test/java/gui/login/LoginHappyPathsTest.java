@@ -10,7 +10,6 @@ public class LoginHappyPathsTest extends BaseTest {
 
     private static final String LOGIN_FORM_TITLE = "Sign in";
     public static final String LOGIN_SUCCESSFUL_MSG = "Successful login!";
-    public static final String LOGIN_NOT_SUCCESSFUL_MSG = "Wrong username or password!";
 
 
     @Test
@@ -34,6 +33,8 @@ public class LoginHappyPathsTest extends BaseTest {
 
         log.info("STEP 5: The user is successfully on the login page");
         LoginPage loginPage = new LoginPage(super.driver,log);
+        boolean isLoginPageLoaded = homePage.isURLLoaded(loginPage.LOGIN_PAGE);
+        Assert.assertTrue(isLoginPageLoaded, "User is not on the login page.");
 
         log.info("STEP 6: Verify the login title");
         String actualLoginFormTitle = loginPage.getLoginPageFormTitle();
@@ -49,7 +50,6 @@ public class LoginHappyPathsTest extends BaseTest {
         Assert.assertFalse(loginPage.isRememberMeCheckboxSelected(), "Checkbox is selected by default!");
         loginPage.clickOnRememberMeCheckbox();
         Assert.assertTrue(loginPage.isRememberMeCheckboxSelected(), "Remember Me checkbox is not selected!");
-
 
         log.info("STEP 10: Click on loginButton");
         loginPage.clickOnLoginButton();
