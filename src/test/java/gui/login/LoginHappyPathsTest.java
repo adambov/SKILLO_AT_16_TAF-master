@@ -39,37 +39,28 @@ public class LoginHappyPathsTest extends BaseTest {
         String actualLoginFormTitle = loginPage.getLoginPageFormTitle();
         Assert.assertEquals(actualLoginFormTitle,LOGIN_FORM_TITLE);
 
-        log.info("STEP 7: Verify checkbox");
-        loginPage.clickOnRememberMeCheckbox();
 
-        log.info("STEP 8: Verify Rememeber me sing");
-
-        log.info("STEP 9: Verify Not a member sing");
-
-        log.info("STEP 10: Verify Register button");
-
-        log.info("STEP 11: Register button");
-
-        log.info("STEP 12: Provide valid username");
+        log.info("STEP 7: Provide valid username");
         loginPage.provideUserName("Nasko10");
 
-        log.info("STEP 13: Provide valid password");
+        log.info("STEP 8: Provide valid password");
         loginPage.providePassword("Password123");
 
-        log.info("STEP 14: Click on checkbox");
+        log.info("STEP 9: Click on checkbox");
+        loginPage.clickOnRememberMeCheckbox();
 
-        log.info("STEP 15: Click on loginButton");
+        log.info("STEP 10: Click on loginButton");
         loginPage.clickOnLoginButton();
 
-        log.info("STEP 16: Verify success message after successful login");
+        log.info("STEP 11: Verify success message after successful login");
         String actualLoginActionMSG = loginPage.getLoginActionMessage();
         Assert.assertEquals(actualLoginActionMSG,LOGIN_SUCCESSFUL_MSG);
 
-        log.info("STEP 17: Verifying that the logout button is visible and present on the page.");
+        log.info("STEP 12: Verifying that the logout button is visible and present on the page.");
         boolean isLogoutButtonVisible = homePage.isNavLogoutShown();
         Assert.assertTrue(isLogoutButtonVisible, "Logout button is visible on the page!");
 
-        log.info("STEP 18: Verifying that the Profile button is visible and present on the page.");
+        log.info("STEP 13: Verifying that the Profile button is visible and present on the page.");
         boolean isProfileButtonVisible = homePage.isNavProfileShown();
         Assert.assertTrue(isProfileButtonVisible, "Profile button is visible on the page!");
 
