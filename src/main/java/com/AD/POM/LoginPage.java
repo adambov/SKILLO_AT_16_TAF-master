@@ -78,4 +78,8 @@ public class LoginPage extends BasePage {
         return msg;
     }
 
+    public WebElement getLoginFormSubmitButton() {
+        return loginFormSubmitButton;
+    }
+
 }
