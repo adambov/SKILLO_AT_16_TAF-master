@@ -46,7 +46,7 @@ public class RegistrationPage  extends BasePage {
         navigateTo(REGISTARATION_PAGE_URL);
     }
 
-    //4 USER ACTION
+    //4. USER ACTION + 5. SUPPORT METHODS
     public void provideUserName(String userName) {
         isPresented(usernameInputField);
         waitAndTypeTextInField(usernameInputField,userName);
@@ -77,7 +77,13 @@ public class RegistrationPage  extends BasePage {
         waitAndTypeTextInField(publicInfoInputField, publicInfo);
     }
 
-    //5. SUPPORT METHODS
+
 
     //6.Verifications
+    public String getRegFormTitle() {
+        isPresented(regFormTitle);
+        return regFormTitle.getText();
+    }
+    //add method for the message verification
+
 }
