@@ -20,7 +20,7 @@ public class RegistrationPage  extends BasePage {
     private WebElement emailInputField;
 
     @FindBy(xpath = "//input[@placeholder='Birth date']")
-    private WebElement birthDateInput;
+    private WebElement birthDateInputField;
 
     @FindBy(xpath = "//input[@placeholder='Password']")
     private WebElement passwordInputField;
@@ -29,7 +29,7 @@ public class RegistrationPage  extends BasePage {
     private WebElement confirmPasswordInputField;
 
     @FindBy(xpath = "//textarea[@placeholder='Public info']")
-    private WebElement publicInfoInput;
+    private WebElement publicInfoInputField;
 
     @FindBy(xpath = "//button[@id='sign-in-button']")
     private WebElement signInButton;
@@ -46,6 +46,35 @@ public class RegistrationPage  extends BasePage {
         navigateTo(REGISTARATION_PAGE_URL);
     }
 
+    public void provideUserName(String userName) {
+        isPresented(usernameInputField);
+        waitAndTypeTextInField(usernameInputField,userName);
+    }
+
+    public void provideEmail(String email) {
+        isPresented(emailInputField);
+        waitAndTypeTextInField(emailInputField, email);
+    }
+
+    public void provideBirthDate(String birthDate){
+        isPresented(birthDateInputField);
+        waitAndTypeTextInField(birthDateInputField, birthDate);
+    }
+
+    public void providePassword(String password) {
+        isPresented(passwordInputField);
+        waitAndTypeTextInField(passwordInputField,password);
+    }
+
+    public void provideConfirmPassword(String confirmPassword) {
+        isPresented(confirmPasswordInputField);
+        waitAndTypeTextInField(confirmPasswordInputField,confirmPassword);
+    }
+
+    public void providePublicInfoText(String publicInfo) {
+        isPresented(publicInfoInputField);
+        waitAndTypeTextInField(publicInfoInputField, publicInfo);
+    }
     //4 USER ACTION
 
     //5. SUPPORT METHODS

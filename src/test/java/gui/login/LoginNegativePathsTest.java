@@ -40,25 +40,19 @@ public class LoginNegativePathsTest extends BaseTest {
         String actualLoginFormTitle = loginPage.getLoginPageFormTitle();
         Assert.assertEquals(actualLoginFormTitle, LOGIN_FORM_TITLE, "Login form title mismatch!");
 
-        log.info("STEP 4: Provide invalid username.");
-        loginPage.provideUserName(username);
+        log.info("STEP 4: Use loginWithUserAndPassword method to login");
+        loginPage.loginWithUSerAndPassword(username, password);
 
-        log.info("STEP 5: Provide invalid password.");
-        loginPage.providePassword(password);
-
-        log.info("STEP 6: Interact with 'Remember Me' checkbox.");
+        log.info("STEP 5: Interact with 'Remember Me' checkbox.");
         Assert.assertFalse(loginPage.isRememberMeCheckboxSelected(), "Checkbox is selected by default!");
         loginPage.clickOnRememberMeCheckbox();
         Assert.assertTrue(loginPage.isRememberMeCheckboxSelected(), "Remember Me checkbox is not selected!");
 
-        log.info("STEP 7: Click on login button.");
-        loginPage.clickOnLoginButton();
-
-        log.info("STEP 8: Verify error message after failed login.");
+        log.info("STEP 6: Verify error message after failed login.");
         String actualLoginActionMSG = loginPage.getLoginActionMessage();
         Assert.assertEquals(actualLoginActionMSG, LOGIN_NOT_SUCCESSFUL_MSG, "Error message mismatch!");
 
-        log.info("STEP 9: Verify login submit button is still visible.");
+        log.info("STEP 7: Verify login submit button is still visible.");
         WebElement loginFormSubmitButton = loginPage.getLoginFormSubmitButton();
         Assert.assertTrue(loginFormSubmitButton.isDisplayed(), "Login form submit button is not visible!");
 
