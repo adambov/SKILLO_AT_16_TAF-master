@@ -26,7 +26,7 @@ public class LoginNegativePathsTest extends BaseTest {
     }
 
     @Test(dataProvider = "invalidCredentials")
-    public void verifyUserCannotLoginWithWrongUserName(String username, String password) {
+    public void verifyUserCannotLoginWithWrongUserName(String username, String password) throws InterruptedException {
         LoginPage loginPage = new LoginPage(super.driver, log);
 
         log.info("STEP 1: Landing on Iskilo login page.");
@@ -61,5 +61,7 @@ public class LoginNegativePathsTest extends BaseTest {
         log.info("STEP 9: Verify login submit button is still visible.");
         WebElement loginFormSubmitButton = loginPage.getLoginFormSubmitButton();
         Assert.assertTrue(loginFormSubmitButton.isDisplayed(), "Login form submit button is not visible!");
+
+        Thread.sleep(5555);
     }
 }

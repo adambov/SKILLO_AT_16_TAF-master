@@ -4,6 +4,7 @@ import com.AD.POM.HomePage;
 import com.AD.POM.LoginPage;
 import gui.base.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LoginHappyPathsTest extends BaseTest {
@@ -11,9 +12,15 @@ public class LoginHappyPathsTest extends BaseTest {
     private static final String LOGIN_FORM_TITLE = "Sign in";
     public static final String LOGIN_SUCCESSFUL_MSG = "Successful login!";
 
+    @DataProvider(name = "invalidCredentials")
+    public Object[][] invalidCredentials() {
+        return new Object[][]{
+                {"Nasko10", "Password123"},
+        };
+    }
 
-    @Test
-    public void verifyLoginWithValidCredentials() throws InterruptedException {
+    @Test(dataProvider = "invalidCredentials")
+    public void verifyLoginWithValidCredentials(String username, String password) throws InterruptedException {
 
         HomePage homePage = new HomePage(super.driver, log);
 
@@ -41,10 +48,10 @@ public class LoginHappyPathsTest extends BaseTest {
         Assert.assertEquals(actualLoginFormTitle,LOGIN_FORM_TITLE);
 
         log.info("STEP 7: Provide valid username");
-        loginPage.provideUserName("Nasko10");
+        loginPage.provideUserName(username);
 
         log.info("STEP 8: Provide valid password");
-        loginPage.providePassword("Password123");
+        loginPage.providePassword(password);
 
         log.info("STEP 9: Click on checkbox");
         Assert.assertFalse(loginPage.isRememberMeCheckboxSelected(), "Checkbox is selected by default!");
