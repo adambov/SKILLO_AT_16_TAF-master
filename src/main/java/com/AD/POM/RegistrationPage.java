@@ -16,6 +16,25 @@ public class RegistrationPage  extends BasePage {
     @FindBy(css = "input.is-invalid")
     private WebElement usernameInputField;
 
+    @FindBy(xpath = "//input[@placeholder='email']")
+    private WebElement emailInputField;
+
+    @FindBy(xpath = "//input[@placeholder='Birth date']")
+    private WebElement birthDateInput;
+
+    @FindBy(xpath = "//input[@placeholder='Password']")
+    private WebElement passwordInputField;
+
+    @FindBy(xpath = "//input[@placeholder='Confirm Password']")
+    private WebElement confirmPasswordInputField;
+
+    @FindBy(xpath = "//textarea[@placeholder='Public info']")
+    private WebElement publicInfoInput;
+
+    @FindBy(xpath = "//button[@id='sign-in-button']")
+    private WebElement signInButton;
+
+
     //3 CONSTRUCTOR
     public RegistrationPage(WebDriver driver, Logger log) {
         super(driver, log);
