@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class RegistrationPage  extends BasePage {
     //1. CONST
@@ -33,6 +34,9 @@ public class RegistrationPage  extends BasePage {
 
     @FindBy(xpath = "//button[@id='sign-in-button']")
     private WebElement signInButton;
+
+    @FindBy(xpath = "//*[@id='toast-container']")
+    private WebElement toastContainerRegistration;
 
 
     //3 CONSTRUCTOR
@@ -77,7 +81,10 @@ public class RegistrationPage  extends BasePage {
         waitAndTypeTextInField(publicInfoInputField, publicInfo);
     }
 
-
+    public void clickSignInButton() {
+        isPresented(signInButton);
+        signInButton.click();
+    }
 
     //6.Verifications
     public String getRegFormTitle() {
@@ -85,5 +92,9 @@ public class RegistrationPage  extends BasePage {
         return regFormTitle.getText();
     }
     //add method for the message verification
-
+    public String successfulRegMessage(){
+        wait.until(ExpectedConditions.visibilityOf(toastContainerRegistration));
+        String regMsg = toastContainerRegistration.getText();
+        return regMsg;
+    }
 }
