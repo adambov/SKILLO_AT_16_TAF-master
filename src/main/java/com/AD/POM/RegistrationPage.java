@@ -92,7 +92,7 @@ public class RegistrationPage  extends BasePage {
         return regFormTitle.getText();
     }
     //add method for the message verification
-    public String successfulRegMessage(){
+    public String getToastMessage(){
         wait.until(ExpectedConditions.visibilityOf(toastContainerRegistration));
         String regMsg = toastContainerRegistration.getText();
         return regMsg;
