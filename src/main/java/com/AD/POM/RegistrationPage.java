@@ -14,7 +14,7 @@ public class RegistrationPage  extends BasePage {
     @FindBy(css = "h4.text-center.mb-4")
     private WebElement regFormTitle;
 
-    @FindBy(css = "input.is-invalid")
+    @FindBy(xpath = "//input[@placeholder='Username']")
     private WebElement usernameInputField;
 
     @FindBy(xpath = "//input[@placeholder='email']")

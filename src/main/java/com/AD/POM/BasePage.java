@@ -60,7 +60,7 @@ public class BasePage {
         js.executeScript("return document.readyState").equals("complete");
     }
 
-    public boolean isPresented(WebElement elm) {
+        public boolean isPresented(WebElement elm) {
         boolean isWebElmShown = false;
         String li = locatorInfo(elm);
 

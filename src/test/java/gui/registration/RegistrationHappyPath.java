@@ -2,6 +2,7 @@ package gui.registration;
 
 import com.AD.POM.RegistrationPage;
 import gui.base.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.regData.RegistrationDataGenerator;
 
@@ -13,13 +14,20 @@ public class RegistrationHappyPath extends BaseTest {
 
          String USERNAME = RegistrationDataGenerator.createUser() ;
          String EMAIL = RegistrationDataGenerator.createEmail();
+         String DATE = RegistrationDataGenerator.createDate();
+         String PASSWORD = RegistrationDataGenerator.createPassword(6);
+         String PUBLIC_INFO = RegistrationDataGenerator.generateRandomPublicInfo(50);
 
         registrationPage.navigateToRegPage();
 
-        //TO DO ReGISTRATION PAGE
+        registrationPage.provideUserName(USERNAME);
+        registrationPage.provideEmail(EMAIL);
+        registrationPage.provideBirthDate(DATE);
+        registrationPage.providePassword(PASSWORD);
+        registrationPage.provideConfirmPassword(PASSWORD);
+        registrationPage.providePublicInfoText(PUBLIC_INFO);
+        registrationPage.clickSignInButton();
 
-        Thread.sleep(4444);
-
-
+        Thread.sleep(5555);
     }
 }
