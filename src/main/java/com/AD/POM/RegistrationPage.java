@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
+
 
 public class RegistrationPage  extends BasePage {
     //1. CONST
@@ -38,7 +38,6 @@ public class RegistrationPage  extends BasePage {
 
     @FindBy(xpath = "//*[@id='toast-container']")
     private WebElement toastContainerRegistration;
-
 
     //3 CONSTRUCTOR
     public RegistrationPage(WebDriver driver, Logger log) {
