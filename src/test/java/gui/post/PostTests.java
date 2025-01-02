@@ -47,7 +47,7 @@ public class PostTests extends BaseTest {
         ProfilePage profilePage = new ProfilePage(super.driver, log);
         boolean isMorePostShown = profilePage.getPostCount() > 0;
         Assert.assertTrue(isMorePostShown);
-        profilePage.clickPost(0);
+        homePage.clickPost(0);
 
         log.info("Step 10: Verify if post is visible");
         PostModal postModal = new PostModal(super.driver, log);
@@ -78,7 +78,7 @@ public class PostTests extends BaseTest {
         homePage.clickOnNavBarProfile();
 
         ProfilePage profilePage = new ProfilePage(super.driver, log);
-        profilePage.clickPost(0);
+        homePage.clickPost(0);
         log.info("The user has clicked on the first post.");
 
         profilePage.ClickOnDeleteButton();
