@@ -30,13 +30,13 @@ public class LikePost extends BaseTest {
         log.info("The user has navigated to the Profile page.");
         homePage.clickOnNavBarProfile();
 
-        ProfilePage profilePage = new ProfilePage(super.driver, log);
-        profilePage.clickPost(0);
+        log.info("The user clicked on Post button");
+        homePage.clickPost(0);
         log.info("The user has clicked on the first post.");
 
-        profilePage.ClickOnLikeButton();
+        homePage.ClickOnLikeButton();
         log.info("The user has clicked on the like button.");
-        profilePage.isLikeMessageVisible();
+        homePage.isLikeMessageVisible();
 
     }
 }

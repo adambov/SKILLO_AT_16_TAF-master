@@ -36,7 +36,7 @@ public class VerifyUserCanRegisterLoginUpdateProfilePost extends BaseTest {
         ProfilePage profilePage = new ProfilePage(super.driver, log);
         boolean isMorePostShown = profilePage.getPostCount() > 0;
         Assert.assertTrue(isMorePostShown);
-        profilePage.clickPost(0);
+        homePage.clickPost(0);
 
         PostModal postModal = new PostModal(super.driver, log);
         Assert.assertTrue(postModal.isImageVisible(), "The image is not visible!");

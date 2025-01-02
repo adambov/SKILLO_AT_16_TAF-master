@@ -16,9 +16,6 @@ public class ProfilePage extends BasePage {
     @FindBy (id = "upload-img" )
     private WebElement hiddenUploadImage;
 
-    @FindBy (xpath = "//i[contains(@class,'like far fa-heart fa-2x')]")
-    private WebElement likeButton;
-
     @FindBy (xpath = "//i[contains(@class,'ml-4 far fa-thumbs-down fa-2x')]")
     private WebElement dislikeButton;
 
@@ -31,9 +28,6 @@ public class ProfilePage extends BasePage {
     @FindBy (xpath = "//div[contains(@aria-label,'Post Deleted!')]")
     private WebElement confirmDeletionMessage;
 
-    @FindBy (xpath = "//div[contains(@aria-label,'Post liked')]")
-    private WebElement postLikeMessage;
-
     @FindBy (xpath = "//div[contains(@aria-label,'Post disliked')]")
     private WebElement postDislikeMessage;
 
@@ -45,9 +39,7 @@ public class ProfilePage extends BasePage {
         waitAndClickOnWebElement(deletePostButton);
     }
 
-    public void ClickOnLikeButton() {
-        waitAndClickOnWebElement(likeButton);
-    }
+
 
     public void ClickOnDisikeButton() {
         waitAndClickOnWebElement(dislikeButton);
@@ -73,13 +65,6 @@ public class ProfilePage extends BasePage {
         return posts.size();
     }
 
-    public void clickPost(int postIndex) {
-        List<WebElement> posts = driver.findElements(By.tagName("app-post"));
-        posts.get(postIndex).click();
-
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("return document.readyState").equals("complete");
-        }
 
     public boolean isDeletedMessageVisible() {
         boolean isDeletedMessageVisible = false;
@@ -92,19 +77,6 @@ public class ProfilePage extends BasePage {
             isDeletedMessageVisible = false;
         }
         return isDeletedMessageVisible;
-    }
-
-    public boolean isLikeMessageVisible() {
-        boolean isLikeMessageVisible = false;
-        try {
-            isLikeMessageVisible = wait.until(ExpectedConditions.visibilityOf(postLikeMessage)).isDisplayed();
-            log.info("CONFIRMATION # The Post liked message is displayed.");
-        } catch (NoSuchElementException e) {
-            e.printStackTrace();
-            log.error("ERROR : The Post liked message is not displayed!");
-            isLikeMessageVisible = false;
-        }
-        return isLikeMessageVisible;
     }
 
     public boolean isDislikeMessageVisible() {
