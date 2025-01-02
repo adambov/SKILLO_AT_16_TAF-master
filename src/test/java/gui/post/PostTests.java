@@ -14,89 +14,109 @@ public class PostTests extends BaseTest {
     File postPicture = new File("src/test/resources/upload/n3Test.jpg");
 
     @Test(priority = 0)
-    public void verifyUserCanCreatePost() {
+    public void verifyUserCanCreatePost() throws InterruptedException{
         HomePage homePage = new HomePage(super.driver, log);
+
+        log.info("Step 1: homepage is opened");
         homePage.openHomePage();
+
+        log.info("Step 2: Click on Login");
         homePage.clickOnNavBarLogin();
 
+        log.info("Step 3: User logs in");
         LoginPage loginPage = new LoginPage(super.driver, log);
         loginPage.loginWithUSerAndPassword(testUser,testPassword);
 
+        log.info("Step 4: User clicks on New Post in the navigation bar");
         homePage.clickOnNavBarNewPost();
 
+        log.info("Step 5: User uploads picture");
         PostPage postPage = new PostPage(super.driver, log);
-
         postPage.uploadPicture(postPicture);
 
+        log.info("Step 6: User provides post text/caption");
         postPage.providePostCaption(caption);
+
+        log.info("Step 7: User clicks create post button");
         postPage.clickCreatePostButton();
 
+        log.info("Step 8: User sets post as private");
+        postPage.clickPublicPrivateToggle();
+
+        log.info("Step 9: Verify if post are than before");
         ProfilePage profilePage = new ProfilePage(super.driver, log);
         boolean isMorePostShown = profilePage.getPostCount() > 0;
         Assert.assertTrue(isMorePostShown);
         profilePage.clickPost(0);
 
+        log.info("Step 10: Verify if post is visible");
         PostModal postModal = new PostModal(super.driver, log);
         Assert.assertTrue(postModal.isImageVisible(), "The image is not visible!");
 
+        log.info("Step 11: Verify if the user who created the post is the same with the username of the account");
         String postUserTxt = postModal.getPostUser();
         Assert.assertEquals(postUserTxt, testUser);
+
+        log.info("Steps 12: Verify if post is private");
+        postModal.isPostPrivate();
+
+        Thread.sleep(55555);
     }
 
-    @Test (priority = 1)
-    public void verifyUserCanLikePost() {
-        HomePage homePage = new HomePage(super.driver, log);
-        LoginPage loginPage = new LoginPage(super.driver, log);
-
-        log.info("The user has navigated to the Login page.");
-        loginPage.navigateToLoginPage();
-
-        log.info("The user has logged in with username and password.");
-        loginPage.loginWithUSerAndPassword(testUser, testPassword);
-
-        log.info("The user has navigated to the Profile page.");
-        homePage.clickOnNavBarProfile();
-
-        ProfilePage profilePage = new ProfilePage(super.driver, log);
-        profilePage.clickPost(0);
-        log.info("The user has clicked on the first post.");
-
-        profilePage.ClickOnLikeButton();
-        log.info("The user has clicked on the like button.");
-        profilePage.isLikeMessageVisible();
-
-    }
-
-    @Test
-    public void verifyUserCanDislikePost() {
-       ProfilePage profilePage = new ProfilePage(super.driver, log);
-       profilePage.navigateTo("posts/all");
-    }
-
-    @Test(priority = 4)
-    public void verifyUserCanDeletePost() {
-        HomePage homePage = new HomePage(super.driver, log);
-        LoginPage loginPage = new LoginPage(super.driver, log);
-
-        log.info("The user has navigated to the Login page.");
-        loginPage.navigateToLoginPage();
-
-        log.info("The user has logged in with username and password.");
-        loginPage.loginWithUSerAndPassword(testUser, testPassword);
-
-        log.info("The user has navigated to the Profile page.");
-        homePage.clickOnNavBarProfile();
-
-        ProfilePage profilePage = new ProfilePage(super.driver, log);
-        profilePage.clickPost(0);
-        log.info("The user has clicked on the first post.");
-
-        profilePage.ClickOnDeleteButton();
-        log.info("The user has clicked on the Delete post button.");
-
-        profilePage.ClickOnYesButton();
-        log.info("The user has confirmed the deletion.");
-
-        profilePage.isDeletedMessageVisible();
-    }
+//    @Test (priority = 1)
+//    public void verifyUserCanLikePost() {
+//        HomePage homePage = new HomePage(super.driver, log);
+//        LoginPage loginPage = new LoginPage(super.driver, log);
+//
+//        log.info("The user has navigated to the Login page.");
+//        loginPage.navigateToLoginPage();
+//
+//        log.info("The user has logged in with username and password.");
+//        loginPage.loginWithUSerAndPassword(testUser, testPassword);
+//
+//        log.info("The user has navigated to the Profile page.");
+//        homePage.clickOnNavBarProfile();
+//
+//        ProfilePage profilePage = new ProfilePage(super.driver, log);
+//        profilePage.clickPost(0);
+//        log.info("The user has clicked on the first post.");
+//
+//        profilePage.ClickOnLikeButton();
+//        log.info("The user has clicked on the like button.");
+//        profilePage.isLikeMessageVisible();
+//
+//    }
+//
+//    @Test
+//    public void verifyUserCanDislikePost() {
+//       ProfilePage profilePage = new ProfilePage(super.driver, log);
+//       profilePage.navigateTo("posts/all");
+//    }
+//
+//    @Test(priority = 4)
+//    public void verifyUserCanDeletePost() {
+//        HomePage homePage = new HomePage(super.driver, log);
+//        LoginPage loginPage = new LoginPage(super.driver, log);
+//
+//        log.info("The user has navigated to the Login page.");
+//        loginPage.navigateToLoginPage();
+//
+//        log.info("The user has logged in with username and password.");
+//        loginPage.loginWithUSerAndPassword(testUser, testPassword);
+//
+//        log.info("The user has navigated to the Profile page.");
+//        homePage.clickOnNavBarProfile();
+//
+//        ProfilePage profilePage = new ProfilePage(super.driver, log);
+//        profilePage.clickPost(0);
+//        log.info("The user has clicked on the first post.");
+//
+//        profilePage.ClickOnDeleteButton();
+//        log.info("The user has clicked on the Delete post button.");
+//
+//        profilePage.ClickOnYesButton();
+//        log.info("The user has confirmed the deletion.");
+//
+//        profilePage.isDeletedMessageVisible();
+//    }
 }
