@@ -37,4 +37,6 @@ public class PostModal extends BasePage{
         Assert.assertTrue(actualPadlock.contains("fa-lock"), "Padlock icon is not locked");
         return true;
     }
+
+
 }
