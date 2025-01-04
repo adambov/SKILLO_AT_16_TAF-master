@@ -28,7 +28,7 @@ public class LikePost extends BaseTest {
         loginPage.loginWithUSerAndPassword(testUser, testPassword);
 
         log.info("The user has navigated to the Profile page.");
-        homePage.clickOnNavBarProfile();
+        homePage.openHomePage();
 
         log.info("The user clicked on Post button");
         homePage.clickPost(0);

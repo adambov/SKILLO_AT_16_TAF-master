@@ -9,8 +9,6 @@ import org.testng.Assert;
 
 public class PostModal extends BasePage{
     private final WebElement modalElement;
-    @FindBy(xpath = "//i[contains(@class, 'fa-lock') or contains(@class, 'fa-unlock')]")
-    private WebElement padlockIcon;
 
     public PostModal (WebDriver driver, Logger log) {
         super(driver,log);
@@ -32,10 +30,14 @@ public class PostModal extends BasePage{
     }
 
     public boolean isPostPrivate() {
+        log.info("Checking if the post is private...");
+        WebElement modalElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='post-modal-comments']")));
+        WebElement padlockIcon = modalElement.findElement(By.xpath(".//i[contains(@class, 'fa-lock') or contains(@class, 'fa-unlock')]"));
+
         wait.until(ExpectedConditions.visibilityOf(padlockIcon));
         String actualPadlock = padlockIcon.getAttribute("class");
         Assert.assertTrue(actualPadlock.contains("fa-lock"), "Padlock icon is not locked");
-        return true;
+        return actualPadlock.contains("fa-lock");
     }
 
 

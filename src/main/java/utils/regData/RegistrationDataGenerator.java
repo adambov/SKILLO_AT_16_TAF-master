@@ -59,10 +59,6 @@ public class RegistrationDataGenerator {
         return pass.toString();
     };
 
-    public static String createPasswordFor() {
-        return new SimpleDateFormat("mmssSSS").format(new Date()) + "_student";
-    };
-
     public static String generateRandomPublicInfo(int length) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;':\",.<>?/`~ \n";
         StringBuilder randomPublicInfo = new StringBuilder();

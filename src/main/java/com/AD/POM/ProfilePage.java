@@ -31,6 +31,14 @@ public class ProfilePage extends BasePage {
     @FindBy (xpath = "//div[contains(@aria-label,'Post disliked')]")
     private WebElement postDislikeMessage;
 
+    @FindBy (xpath = "//label[@class='btn-all btn btn-primary']")
+    private WebElement allBtn;
+
+    @FindBy (xpath = "//div[contains(@class, 'row no-gutters')]")
+    private WebElement postsContainer;
+
+
+
     public void ClickOnYesButton() {
         waitAndClickOnWebElement(areYouSureYesButton);
     }
@@ -92,9 +100,25 @@ public class ProfilePage extends BasePage {
         return isDislikeMessageVisible;
     }
 
+    public void clickOnAllPostFilterBtn(){
+        wait.until(ExpectedConditions.visibilityOf(allBtn)).isDisplayed();
+        allBtn.click();
+    }
+
+    public void  openLastPost() {
+        WebElement lastPost = postsContainer.findElement(By.xpath("//app-post[contains(\n" +
+                "@class, 'col-sm-12 col-md-6 col-lg-4 app-post ng-star-inserted')][last()]"));
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", lastPost);
+
+        wait.until(ExpectedConditions.elementToBeClickable(lastPost));
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", lastPost);
+
+    }
+
 
     public void closePostModal() {
-
 
     }
 }
