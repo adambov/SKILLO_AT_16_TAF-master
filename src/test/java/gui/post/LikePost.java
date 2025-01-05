@@ -20,6 +20,7 @@ public class LikePost extends BaseTest {
 
         HomePage homePage = new HomePage(super.driver, log);
         LoginPage loginPage = new LoginPage(super.driver, log);
+        ProfilePage profilePage = new ProfilePage(super.driver, log);
 
         log.info("The user has navigated to the Login page.");
         loginPage.navigateToLoginPage();
@@ -31,7 +32,7 @@ public class LikePost extends BaseTest {
         homePage.openHomePage();
 
         log.info("The user clicked on Post button");
-        homePage.clickPost(0);
+        profilePage.clickPost(0);
         log.info("The user has clicked on the first post.");
 
         homePage.ClickOnLikeButton();
