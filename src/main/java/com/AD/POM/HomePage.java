@@ -73,13 +73,7 @@ public class HomePage extends BasePage {
        waitAndClickOnWebElement(navBarNewPost);
     }
 
-    public void clickPost(int postIndex) {
-        List<WebElement> posts = driver.findElements(By.tagName("app-post"));
-        posts.get(postIndex).click();
 
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("return document.readyState").equals("complete");
-    }
 
     public void ClickOnLikeButton() {
         waitAndClickOnWebElement(likeButton);

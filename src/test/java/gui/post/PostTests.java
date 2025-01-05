@@ -51,19 +51,16 @@ public class PostTests extends BaseTest {
         log.info("Step 10: Verify if post are than before");
         boolean isMorePostShown = profilePage.getPostCount() > 0;
         Assert.assertTrue(isMorePostShown);
-        homePage.clickPost(0);
+        profilePage.clickPost(0);
 
-        log.info("Step 11: Open the latest post");
-        profilePage.openLastPost();
-
-        log.info("Steps 12: Verify if post is private");
+        log.info("Steps 11: Verify if post is private");
         PostModal postModal = new PostModal(super.driver, log);
         postModal.isPostPrivate();
 
-        log.info("Step 13: Verify if post is visible");
+        log.info("Step 12: Verify if post is visible");
         Assert.assertTrue(postModal.isImageVisible(), "The image is not visible!");
 
-        log.info("Step 14: Verify if the user who created the post is the same with the username of the account");
+        log.info("Step 13: Verify if the user who created the post is the same with the username of the account");
         String postUserTxt = postModal.getPostUser();
         Assert.assertEquals(postUserTxt, testUser);
 
@@ -91,7 +88,7 @@ public class PostTests extends BaseTest {
 
 
         if (finalPostCount > 0) {
-            profilePage.openLastPost();
+            profilePage.clickPost(0);
             log.info("The user has clicked on the last post.");
         } else {
             log.error("No posts are available to click.");

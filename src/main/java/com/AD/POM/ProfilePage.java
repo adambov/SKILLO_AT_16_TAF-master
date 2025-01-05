@@ -111,16 +111,12 @@ public class ProfilePage extends BasePage {
         allBtn.click();
     }
 
-    public void  openLastPost() {
-        WebElement lastPost = postsContainer.findElement(By.xpath("//app-post[contains(\n" +
-                "@class, 'col-sm-12 col-md-6 col-lg-4 app-post ng-star-inserted')][last()]"));
+    public void clickPost(int postIndex) {
+        List<WebElement> posts = driver.findElements(By.tagName("app-post"));
+        posts.get(postIndex).click();
 
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", lastPost);
-
-        wait.until(ExpectedConditions.elementToBeClickable(lastPost));
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", lastPost);
-
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("return document.readyState").equals("complete");
     }
 
     public void closePostModal() {
