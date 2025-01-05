@@ -86,13 +86,12 @@ public class PostTests extends BaseTest {
         profilePage.clickOnAllPostFilterBtn();
         int finalPostCount = profilePage.getPostCount();
 
-
-        if (finalPostCount > 0) {
+        try {
             profilePage.clickPost(0);
             log.info("The user has clicked on the last post.");
-        } else {
+        } catch (IndexOutOfBoundsException e) {
             log.error("No posts are available to click.");
-            Assert.fail("Test failed: No posts available to delete.");
+            throw new IndexOutOfBoundsException();
         }
 
         profilePage.ClickOnDeleteButton();
