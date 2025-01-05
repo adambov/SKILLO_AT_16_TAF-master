@@ -15,7 +15,7 @@ public class PostTests extends BaseTest {
     File postPicture = new File("src/test/resources/upload/n3Test.jpg");
 
     @Test(priority = 0)
-    public void verifyUserCanCreatePost() throws InterruptedException{
+    public void verifyUserCanCreatePost() {
         HomePage homePage = new HomePage(super.driver, log);
 
         log.info("Step 1: homepage is opened");
@@ -66,8 +66,8 @@ public class PostTests extends BaseTest {
 
     }
 
-    @Test(priority = 1, expectedExceptions = IndexOutOfBoundsException.class)
-    public void verifyUserCanDeletePost() throws IndexOutOfBoundsException, InterruptedException {
+    @Test(priority = 1)
+    public void verifyUserCanDeletePost() throws IndexOutOfBoundsException {
         HomePage homePage = new HomePage(super.driver, log);
         LoginPage loginPage = new LoginPage(super.driver, log);
         ProfilePage profilePage = new ProfilePage(super.driver, log);
@@ -105,8 +105,8 @@ public class PostTests extends BaseTest {
         profilePage.isDeletedMessageVisible();
 
         log.info("Confirm whether the number of posts is one fewer.");
-            profilePage.clickOnAllPostFilterBtn();
-            log.info("Final number of posts: " + finalPostCount);
-            Assert.assertEquals(initialPostCount, finalPostCount, "The number of posts did not decrease by 1.");
+        log.info("Initial number of posts: " + initialPostCount);
+        log.info("Final number of posts: " + finalPostCount);
+        Assert.assertTrue(finalPostCount > initialPostCount, "The number of posts did not increase by 1.");
     }
 }
