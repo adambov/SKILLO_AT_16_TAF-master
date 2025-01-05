@@ -2,20 +2,21 @@ package gui.post;
 
 import com.AD.POM.*;
 import gui.base.BaseTest;
-import net.bytebuddy.build.Plugin;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.io.File;
 
 public class PostTests extends BaseTest {
+
     public static final String testUser = "Nasko10";
     public static final String testPassword = "Password123";
     public static final String caption = "Testing the create post caption";
     File postPicture = new File("src/test/resources/upload/n3Test.jpg");
 
     @Test(priority = 0)
-    public void verifyUserCanCreatePost() {
+    public void verifyUserCanCreatePost() throws InterruptedException {
         HomePage homePage = new HomePage(super.driver, log);
 
         log.info("Step 1: homepage is opened");
@@ -51,7 +52,8 @@ public class PostTests extends BaseTest {
         log.info("Step 10: Verify if post are than before");
         boolean isMorePostShown = profilePage.getPostCount() > 0;
         Assert.assertTrue(isMorePostShown);
-        profilePage.clickPost(0);
+        int lastPostIndex = profilePage.getLastPostIndex();
+        profilePage.clickPost(lastPostIndex);
 
         log.info("Steps 11: Verify if post is private");
         PostModal postModal = new PostModal(super.driver, log);
@@ -67,7 +69,7 @@ public class PostTests extends BaseTest {
     }
 
     @Test(priority = 1)
-    public void verifyUserCanDeletePost() throws IndexOutOfBoundsException {
+    public void verifyUserCanDeletePost() throws IndexOutOfBoundsException, InterruptedException  {
         HomePage homePage = new HomePage(super.driver, log);
         LoginPage loginPage = new LoginPage(super.driver, log);
         ProfilePage profilePage = new ProfilePage(super.driver, log);
@@ -85,9 +87,10 @@ public class PostTests extends BaseTest {
         log.info("Click on All post filter");
         profilePage.clickOnAllPostFilterBtn();
         int finalPostCount = profilePage.getPostCount();
+        int lastPostIndex = profilePage.getLastPostIndex();
 
         try {
-            profilePage.clickPost(0);
+            profilePage.clickPost(lastPostIndex);
             log.info("The user has clicked on the last post.");
         } catch (IndexOutOfBoundsException e) {
             log.error("No posts are available to click.");

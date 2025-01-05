@@ -111,6 +111,12 @@ public class ProfilePage extends BasePage {
         allBtn.click();
     }
 
+    public int getLastPostIndex() {
+        List<WebElement> posts = driver.findElements(By.tagName("app-post"));
+        int lastPostIndex = posts.size() - 1;
+        return lastPostIndex;
+    }
+
     public void clickPost(int postIndex) {
         List<WebElement> posts = driver.findElements(By.tagName("app-post"));
         posts.get(postIndex).click();
