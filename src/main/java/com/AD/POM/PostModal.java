@@ -31,7 +31,7 @@ public class PostModal extends BasePage{
 
     public boolean isPostPrivate() {
         log.info("Checking if the post is private...");
-        WebElement modalElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='post-modal-comments']")));
+        WebElement modalElement = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='post-modal-container']")));
         WebElement padlockIcon = modalElement.findElement(By.xpath(".//i[contains(@class, 'fa-lock') or contains(@class, 'fa-unlock')]"));
 
         wait.until(ExpectedConditions.visibilityOf(padlockIcon));

@@ -37,6 +37,9 @@ public class ProfilePage extends BasePage {
     @FindBy (xpath = "//div[contains(@class, 'row no-gutters')]")
     private WebElement postsContainer;
 
+    @FindBy (xpath = "//div[@class='post-modal-container']")
+    private WebElement modalElement;
+
 
 
     public void ClickOnYesButton() {
@@ -44,6 +47,7 @@ public class ProfilePage extends BasePage {
     }
 
     public void ClickOnDeleteButton() {
+        wait.until(ExpectedConditions.visibilityOf(modalElement));
         waitAndClickOnWebElement(deletePostButton);
     }
 

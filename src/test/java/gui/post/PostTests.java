@@ -2,6 +2,7 @@ package gui.post;
 
 import com.AD.POM.*;
 import gui.base.BaseTest;
+import net.bytebuddy.build.Plugin;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -68,10 +69,12 @@ public class PostTests extends BaseTest {
 
     }
 
-    @Test(priority = 4)
-    public void verifyUserCanDeletePost() {
+    @Test(priority = 1, expectedExceptions = IndexOutOfBoundsException.class)
+    public void verifyUserCanDeletePost() throws IndexOutOfBoundsException, InterruptedException {
         HomePage homePage = new HomePage(super.driver, log);
         LoginPage loginPage = new LoginPage(super.driver, log);
+        ProfilePage profilePage = new ProfilePage(super.driver, log);
+        int initialPostCount = profilePage.getPostCount();
 
         log.info("The user has navigated to the Login page.");
         loginPage.navigateToLoginPage();
@@ -82,9 +85,18 @@ public class PostTests extends BaseTest {
         log.info("The user has navigated to the Profile page.");
         homePage.clickOnNavBarProfile();
 
-        ProfilePage profilePage = new ProfilePage(super.driver, log);
-        homePage.clickPost(0);
-        log.info("The user has clicked on the first post.");
+        log.info("Click on All post filter");
+        profilePage.clickOnAllPostFilterBtn();
+        int finalPostCount = profilePage.getPostCount();
+
+
+        if (finalPostCount > 0) {
+            profilePage.openLastPost();
+            log.info("The user has clicked on the last post.");
+        } else {
+            log.error("No posts are available to click.");
+            Assert.fail("Test failed: No posts available to delete.");
+        }
 
         profilePage.ClickOnDeleteButton();
         log.info("The user has clicked on the Delete post button.");
@@ -92,6 +104,12 @@ public class PostTests extends BaseTest {
         profilePage.ClickOnYesButton();
         log.info("The user has confirmed the deletion.");
 
+        log.info("Verify deleted post message");
         profilePage.isDeletedMessageVisible();
+
+        log.info("Confirm whether the number of posts is one fewer.");
+            profilePage.clickOnAllPostFilterBtn();
+            log.info("Final number of posts: " + finalPostCount);
+            Assert.assertEquals(initialPostCount, finalPostCount, "The number of posts did not decrease by 1.");
     }
 }

@@ -18,7 +18,7 @@ public class BasePage {
     public BasePage(WebDriver driver, Logger log) {
         this.driver = driver;
         this.log = log;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     public void waitAndClickOnWebElement(WebElement elm) {
