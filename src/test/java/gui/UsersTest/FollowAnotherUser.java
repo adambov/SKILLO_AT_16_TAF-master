@@ -1,4 +1,4 @@
-package gui.HomeTest;
+package gui.UsersTest;
 
 import com.AD.POM.BasePage;
 import com.AD.POM.HomePage;
@@ -8,7 +8,7 @@ import gui.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class FollowAnotherUsers extends BaseTest {
+public class FollowAnotherUser extends BaseTest {
     public static final String testUser = "Nasko10";
     public static final String testPassword = "Password123";
 
