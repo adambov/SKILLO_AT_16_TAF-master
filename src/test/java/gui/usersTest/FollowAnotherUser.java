@@ -1,4 +1,4 @@
-package gui.UsersTest;
+package gui.usersTest;
 
 import com.AD.POM.BasePage;
 import com.AD.POM.HomePage;
@@ -11,9 +11,6 @@ import org.testng.annotations.Test;
 public class FollowAnotherUser extends BaseTest {
     public static final String testUser = "Nasko10";
     public static final String testPassword = "Password123";
-
-
-
 
     @Test
     public void verifyUserCanFollowAnotherUser () throws InterruptedException {
