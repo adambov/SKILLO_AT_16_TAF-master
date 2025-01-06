@@ -33,14 +33,23 @@ public class ProfilePage extends BasePage {
     @FindBy (xpath = "//div[contains(@aria-label,'Post disliked')]")
     private WebElement postDislikeMessage;
 
-    @FindBy (xpath = "//label[@class='btn-all btn btn-primary']")
+    @FindBy (xpath = "//label[contains(@class, 'btn-all btn btn-primary')]")
     private WebElement allBtn;
+
+    @FindBy (xpath = "//label[contains(@class, 'btn-private btn btn-primary')]")
+    private WebElement privateBtn;
 
     @FindBy (xpath = "//div[contains(@class, 'row no-gutters')]")
     private WebElement postsContainer;
 
     @FindBy (xpath = "//div[@class='post-modal-container']")
     private WebElement modalElement;
+
+    @FindBy (xpath = "//button[contains(@class, 'btn btn-primary profile-edit-btn')]")
+    private WebElement followBtn;
+
+    @FindBy (xpath =  "//div[@id='toast-container']")
+    private WebElement toastContainer;
 
 
 
@@ -137,7 +146,78 @@ public class ProfilePage extends BasePage {
         Assert.assertTrue(isDisabled, "The 'All posts' button is not disabled when it should be.");
     }
 
-    public void closePostModal() {
+    public void verifyIfPrivateBtnIsDisabled () {
+        String buttonClass = privateBtn.getAttribute("class");
+        boolean isDisabled = buttonClass.contains("disabled");
+        if (isDisabled) {
+            log.info("The 'Private posts' button is inactive (disabled).");
+        } else {
+            log.info("The 'Private posts' button is active (enabled).");
+        }
+        Assert.assertTrue(isDisabled, "The 'All posts' button is not disabled when it should be.");
+    }
 
+    public void verifySearchedUserIsNotFollowed () {
+        wait.until(ExpectedConditions.elementToBeClickable(followBtn));
+        String actualText = followBtn.getText();
+        String expectedBtnText = "Follow";
+
+        if (actualText.equals(expectedBtnText)) {
+            log.info("The button is in the correct State - FOLLOW");
+        } else {
+            waitAndClickOnWebElement(followBtn);
+            log.info("The button is clicked so that it can go back to FOLLOW");
+        }
+
+    }
+
+    public void clickFollowBtn() {
+        waitAndClickOnWebElement(followBtn);
+    }
+
+    public boolean verifyUnfollowTextBtn () {
+        wait.until(ExpectedConditions.elementToBeClickable(followBtn));
+        String actualText = followBtn.getText();
+        String expectedBtnText = "Unfollow";
+
+        if (actualText.equals(expectedBtnText)) {
+            log.info("THe button changed to UNFOLLOW");
+            return true;
+        } else {
+            log.info("The button stays follow and it should be UNFOLLOW");
+            return false;
+        }
+
+    }
+
+    public void verifyIfAllBtnisEnabled() {
+        String buttonClass = allBtn.getAttribute("class");
+        boolean isEnabled = !buttonClass.contains("disabled");
+        if (isEnabled) {
+            log.info("The 'All posts' button is active (enabled).");
+        } else {
+            log.info("The 'All posts' button is inactive (disabled).");
+        }
+
+        Assert.assertTrue(isEnabled, "The 'All posts' button is not disabled when it should be.");
+    }
+
+    public void verifyIfPrivateBtnisEnabled() {
+        String buttonClass = privateBtn.getAttribute("class");
+        boolean isEnabled = !buttonClass.contains("disabled");
+        if (isEnabled) {
+            log.info("The 'Private posts' button is active (enabled).");
+
+        } else {
+            log.info("The 'Private posts' button is inactive (disabled).");
+        }
+        Assert.assertTrue(isEnabled, "The 'All posts' button is not disabled when it should be.");
+    }
+
+    public void verifySuccessfullFollow () {
+        wait.until(ExpectedConditions.visibilityOf(toastContainer));
+        String actualToastMsg = toastContainer.getText();
+        String expectedToastMsg = "You followed!";
+        Assert.assertEquals(actualToastMsg, expectedToastMsg, "Following failed ");
     }
 }
