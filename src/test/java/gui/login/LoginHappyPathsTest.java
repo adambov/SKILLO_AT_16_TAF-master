@@ -66,7 +66,5 @@ public class LoginHappyPathsTest extends BaseTest {
         log.info("STEP 11: Verifying that the Profile button is visible and present on the page.");
         boolean isProfileButtonVisible = homePage.isNavProfileShown();
         Assert.assertTrue(isProfileButtonVisible, "Profile button is visible on the page!");
-
-        Thread.sleep(5555);
     }
 }

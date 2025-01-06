@@ -125,6 +125,18 @@ public class ProfilePage extends BasePage {
         js.executeScript("return document.readyState").equals("complete");
     }
 
+    public void verifyIfAllBtnisDisabled() {
+        String buttonClass = allBtn.getAttribute("class");
+        boolean isDisabled = buttonClass.contains("disabled");
+        if (isDisabled) {
+            log.info("The 'All posts' button is inactive (disabled).");
+        } else {
+            log.info("The 'All posts' button is active (enabled).");
+        }
+
+        Assert.assertTrue(isDisabled, "The 'All posts' button is not disabled when it should be.");
+    }
+
     public void closePostModal() {
 
     }
