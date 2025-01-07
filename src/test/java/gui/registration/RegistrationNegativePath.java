@@ -6,7 +6,6 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import static utils.regData.RegistrationDataGenerator.fillRegistrationForm;
 
 public class RegistrationNegativePath extends BaseTest {
 
