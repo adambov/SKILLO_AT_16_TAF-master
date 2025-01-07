@@ -1,7 +1,11 @@
 package utils.regData;
 
+import com.github.javafaker.Faker;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -69,6 +73,48 @@ public class RegistrationDataGenerator {
         }
 
         return randomPublicInfo.toString();
+    }
+    public static Map<String, String> fillRegistrationForm(String invalidField, String invalidValue) {
+        Faker faker = new Faker();
+
+        String username = faker.name().username();
+        String email = faker.internet().emailAddress();
+        String date = "01/22/2025";
+        String password = faker.internet().password(6, 20, true, true, true);
+        String confirmPassword = password;
+        String publicInfo = faker.lorem().sentence();
+
+        switch (invalidField) {
+            case "username":
+                username = invalidValue;
+                break;
+            case "email":
+                email = invalidValue;
+                break;
+            case "date":
+                date = invalidValue;
+                break;
+            case "password":
+                password = invalidValue;
+                confirmPassword = invalidValue;
+                break;
+            case "confirmPassword":
+                confirmPassword = invalidValue;
+                break;
+            case "publicInfo":
+                publicInfo = invalidValue;
+                break;
+        }
+
+        Map<String, String> data = new HashMap<>();
+        data.put("username", username);
+        data.put("email", email);
+        data.put("date", date);
+        data.put("password", password);
+        data.put("confirmPassword", confirmPassword);
+        data.put("publicInfo", publicInfo);
+
+        return data;
     }
 }
 

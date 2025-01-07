@@ -18,7 +18,7 @@ public class RegistrationHappyPath extends BaseTest {
         RegistrationPage registrationPage = new RegistrationPage(super.driver,log);
         HomePage homePage = new HomePage(super.driver,log);
 
-         String USERNAME = RegistrationDataGenerator.createUser() ;
+         String USERNAME = RegistrationDataGenerator.createUser();
          String EMAIL = RegistrationDataGenerator.createEmail();
          String DATE = RegistrationDataGenerator.createDate();
          String PASSWORD = RegistrationDataGenerator.createPassword(6);
