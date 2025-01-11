@@ -22,7 +22,7 @@ public class RegistrationNegativePath extends BaseTest {
     String INVALID_PASSWORD = RegistrationDataGenerator.createInvalidPassword(3);
 
     @Test
-    public void testInvalidUsername() throws InterruptedException {
+    public void testInvalidUsername() throws InterruptedException { //да си оправя името на функцията
 
         log.info("Registration page is loaded");
         registrationPage.navigateToRegPage();
