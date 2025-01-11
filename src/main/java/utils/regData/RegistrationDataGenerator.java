@@ -98,6 +98,5 @@ public class RegistrationDataGenerator {
 
         return pass.toString();
     }
-
 }
 
