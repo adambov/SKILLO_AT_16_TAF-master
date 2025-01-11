@@ -82,5 +82,22 @@ public class RegistrationDataGenerator {
         return emptyMail;
     };
 
+    public static String createInvalidPassword(int length) {
+        String lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
+        String digits = "0123456789";
+        String allCharacters = lowerCaseLetters + digits;
+
+        Random random = new Random();
+        StringBuilder pass = new StringBuilder();
+
+        pass.append(lowerCaseLetters.charAt(random.nextInt(lowerCaseLetters.length())));
+
+        for (int i = 1; i < length; i++) {
+            pass.append(allCharacters.charAt(random.nextInt(allCharacters.length())));
+        }
+
+        return pass.toString();
+    }
+
 }
 

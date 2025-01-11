@@ -1,13 +1,19 @@
 package gui.registration;
 
 import com.AD.POM.RegistrationPage;
-import com.github.javafaker.Faker;
 import gui.base.BaseTest;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.regData.RegistrationDataGenerator;
 
 
 public class RegistrationNegativePath extends BaseTest {
+
+    String USERNAME = RegistrationDataGenerator.createUser();
+    String EMAIL = RegistrationDataGenerator.createEmail();
+    String DATE = RegistrationDataGenerator.createDate();
+    String PASSWORD = RegistrationDataGenerator.createPassword(6);
+    String PUBLIC_INFO = RegistrationDataGenerator.generateRandomPublicInfo(50);
 
     String INVALID_USERNAME = RegistrationDataGenerator.createInvalidUsername();
     String INVALID_EMAIL = RegistrationDataGenerator.createInvalidEmail();
@@ -24,8 +30,16 @@ public class RegistrationNegativePath extends BaseTest {
         registrationPage.signUnButtonState();
         log.info("Provide invalid username");
         registrationPage.provideUserName(INVALID_USERNAME);
-
-
+        log.info("Provide valid mail");
+        registrationPage.provideEmail(EMAIL);
+        log.info("Provide Valid password");
+        registrationPage.providePassword(PASSWORD);
+        log.info("Provide valid confirm password");
+        registrationPage.providePassword(PASSWORD);
+        log.info("Provide valid public info");
+        registrationPage.providePublicInfoText(PUBLIC_INFO);
+        log.info("Verify if Sing in button is disabled");
+        Assert.assertFalse(registrationPage.signUnButtonState(), "Button is enabled and it has to be disabled");
     }
 
 }
