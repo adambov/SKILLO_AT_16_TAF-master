@@ -10,29 +10,33 @@
             </class>
             <class name="gui.login.LoginHappyPathsTest">
                 <methods>
-                    <include name="verifyTheUserCannotLoginWithInvalidCredentials"/>
+                    <include name="verifyLoginWithValidCredentials"/>
                 </methods>
             </class>
             <class name="gui.login.LoginNegativePathsTest">
                 <methods>
-                    <include name="verifyUserCannotLoginWithWrongUserName"/>
-                    <include name="verifyUserCannotLoginWithEmptyUserName"/>
-                    <include name="verifyUserCannotLoginWithWrongPassword"/>
-                    <include name="verifyUserCannotLoginWithEmptyPassword"/>
-                    <include name="verifyUserCannotLoginWithEmptyCredentialsData"/>
+                    <include name="verifyUserCannotLoginWithWrongUserNameOrPasswordOrInvalidEntries"/>
                 </methods>
             </class>
             <class name="gui.post.PostTests">
                 <methods>
                     <include name="verifyUserCanCreatePost"/>
-                    <include name="verifyUserCanLikePost"/>
-                    <include name="verifyUserCanDislikePost"/>
                     <include name="verifyUserCanDeletePost"/>
                 </methods>
             </class>
             <class name="gui.registration.RegistrationHappyPath">
                 <methods>
                     <include name="verifyUserCanRegisterWithValidData"/>
+                </methods>
+            </class>
+            <class name="gui.registration.RegistrationNegativePath">
+                <methods>
+                    <include name="validateUserCannotRegisterWithEvenOneInvalidField"/>
+                </methods>
+            </class>
+            <class name="gui.usersTest.FollowAnotherUser">
+                <methods>
+                    <include name="verifyUserCanFollowAnotherUser"/>
                 </methods>
             </class>
         </classes>

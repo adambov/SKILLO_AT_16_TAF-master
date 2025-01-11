@@ -43,7 +43,6 @@ public class VerifyUserCanRegisterLoginUpdateProfilePost extends BaseTest {
 
         String postUserTxt = postModal.getPostUser();
         Assert.assertEquals(postUserTxt, testUser);
-
     }
 
 

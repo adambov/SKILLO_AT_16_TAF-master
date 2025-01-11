@@ -3,7 +3,6 @@ package gui.registration;
 import com.AD.POM.HomePage;
 import com.AD.POM.RegistrationPage;
 import gui.base.BaseTest;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.regData.RegistrationDataGenerator;
