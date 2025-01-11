@@ -34,6 +34,7 @@ public class RegistrationNegativePath extends BaseTest {
                 {USERNAME, EMAIL, DATE, PASSWORD, PASSWORD, ""}
         };
     }
+
     @Test(dataProvider = "invalidDataProvidedForEachFieldSeparately")
     public void validateUserCannotRegisterWithInvalidData(String username, String email, String date, String password, String confirmPassword, String publicInfo) throws InterruptedException {
         RegistrationPage registrationPage = new RegistrationPage(super.driver, log);

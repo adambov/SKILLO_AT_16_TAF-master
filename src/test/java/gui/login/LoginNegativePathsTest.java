@@ -8,16 +8,23 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import utils.regData.RegistrationDataGenerator;
+
+import static utils.regData.RegistrationDataGenerator.createDate;
+import static utils.regData.RegistrationDataGenerator.createEmail;
 
 public class LoginNegativePathsTest extends BaseTest {
 
     private static final String LOGIN_FORM_TITLE = "Sign in";
     public static final String LOGIN_NOT_SUCCESSFUL_MSG = "Wrong username or password!";
 
+    String USERNAME = RegistrationDataGenerator.createUser();
+    String PASSWORD = RegistrationDataGenerator.createPassword(6);
+
     @DataProvider(name = "invalidCredentials")
     public Object[][] invalidCredentials() {
         return new Object[][]{
-                {"HarryPotter", "Dumbeldor123"},
+                {USERNAME, PASSWORD},
                 {" ", "Password123"},
                 {"Nasko10", "Password9090"},
                 {"Nasko10", " "},
