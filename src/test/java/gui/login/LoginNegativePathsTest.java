@@ -1,17 +1,12 @@
 package gui.login;
 
-import com.AD.POM.HomePage;
 import com.AD.POM.LoginPage;
 import gui.base.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.regData.RegistrationDataGenerator;
-
-import static utils.regData.RegistrationDataGenerator.createDate;
-import static utils.regData.RegistrationDataGenerator.createEmail;
 
 public class LoginNegativePathsTest extends BaseTest {
 

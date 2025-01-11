@@ -2,7 +2,6 @@ package gui.post;
 
 import com.AD.POM.*;
 import gui.base.BaseTest;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
