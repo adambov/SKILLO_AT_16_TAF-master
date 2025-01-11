@@ -1,11 +1,8 @@
 package utils.regData;
 
-import com.github.javafaker.Faker;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -39,10 +36,6 @@ public class RegistrationDataGenerator {
             }
     }
 
-    public static String createInvalidEmail() {
-        return new SimpleDateFormat("hhmmssSSS").format(new Date()) + "!";
-    };
-
     public static String createPassword(int length) {
         String upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
@@ -74,6 +67,20 @@ public class RegistrationDataGenerator {
 
         return randomPublicInfo.toString();
     }
+
+    public static String createInvalidUsername() {
+
+        return new SimpleDateFormat("SSS").format(new Date());
+    };
+
+    public static String createInvalidEmail() {
+        return new SimpleDateFormat("hhmmssSSS").format(new Date()) + "!";
+    };
+
+    public static String createInvalidDate() {
+        String emptyMail = "   ";
+        return emptyMail;
+    };
 
 }
 
