@@ -63,6 +63,6 @@ public class LoginNegativePathsTest extends BaseTest {
         WebElement loginFormSubmitButton = loginPage.getLoginFormSubmitButton();
         Assert.assertTrue(loginFormSubmitButton.isDisplayed(), "Login form submit button is not visible!");
 
-        Thread.sleep(5555);
+        Thread.sleep(2222);
     }
 }
