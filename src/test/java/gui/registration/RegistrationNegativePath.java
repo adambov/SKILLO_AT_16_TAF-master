@@ -8,7 +8,7 @@ import utils.regData.RegistrationDataGenerator;
 
 
 public class RegistrationNegativePath extends BaseTest {
-    RegistrationPage registrationPage = new RegistrationPage(super.driver,log);
+
 
     String USERNAME = RegistrationDataGenerator.createUser();
     String EMAIL = RegistrationDataGenerator.createEmail();
@@ -23,7 +23,7 @@ public class RegistrationNegativePath extends BaseTest {
 
     @Test
     public void testInvalidUsername() throws InterruptedException { //да си оправя името на функцията
-
+        RegistrationPage registrationPage = new RegistrationPage(super.driver,log);
         log.info("Registration page is loaded");
         registrationPage.navigateToRegPage();
         log.info("Verify registration form title");
@@ -48,7 +48,7 @@ public class RegistrationNegativePath extends BaseTest {
 
     @Test
     public void testInvalidEmail() throws InterruptedException {
-
+        RegistrationPage registrationPage = new RegistrationPage(super.driver,log);
         log.info("Registration page is loaded");
         registrationPage.navigateToRegPage();
         log.info("Verify registration form title");
@@ -73,7 +73,7 @@ public class RegistrationNegativePath extends BaseTest {
 
     @Test
     public void testInvalidDate() throws InterruptedException {
-
+        RegistrationPage registrationPage = new RegistrationPage(super.driver,log);
         log.info("Registration page is loaded");
         registrationPage.navigateToRegPage();
         log.info("Verify registration form title");
@@ -98,7 +98,7 @@ public class RegistrationNegativePath extends BaseTest {
 
     @Test
     public void testInvalidPassword() throws InterruptedException {
-
+        RegistrationPage registrationPage = new RegistrationPage(super.driver,log);
         log.info("Registration page is loaded");
         registrationPage.navigateToRegPage();
         log.info("Verify registration form title");
@@ -123,7 +123,7 @@ public class RegistrationNegativePath extends BaseTest {
 
     @Test
     public void testEmptyPublicInfo() throws InterruptedException {
-
+        RegistrationPage registrationPage = new RegistrationPage(super.driver,log);
         log.info("Registration page is loaded");
         registrationPage.navigateToRegPage();
         log.info("Verify registration form title");
