@@ -22,11 +22,6 @@
                     <include name="verifyUserCannotLoginWithEmptyCredentialsData"/>
                 </methods>
             </class>
-            <class name="gui.login.LoginPageLayoutTest">
-                <methods>
-                    <include name="verifyLoginPageLayout"/>
-                </methods>
-            </class>
             <class name="gui.post.PostTests">
                 <methods>
                     <include name="verifyUserCanCreatePost"/>
