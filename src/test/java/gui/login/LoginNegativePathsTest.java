@@ -32,31 +32,32 @@ public class LoginNegativePathsTest extends BaseTest {
     public void verifyUserCannotLoginWithWrongUserNameOrPasswordOrInvalidEntries(String username, String password) throws InterruptedException {
         LoginPage loginPage = new LoginPage(super.driver, log);
 
-        log.info("STEP 1: Landing on Iskilo login page.");
         loginPage.navigateToLoginPage();
+        log.info("STEP 1: Landed on Iskillo login page.");
 
-        log.info("STEP 2: Verify login page is loaded.");
         boolean isLoginPageLoaded = loginPage.isURLLoaded(loginPage.LOGIN_PAGE);
         Assert.assertTrue(isLoginPageLoaded, "User is not on the login page.");
+        log.info("STEP 2: Verified login page is loaded.");
 
-        log.info("STEP 3: Verify the login page title.");
         String actualLoginFormTitle = loginPage.getLoginPageFormTitle();
         Assert.assertEquals(actualLoginFormTitle, LOGIN_FORM_TITLE, "Login form title mismatch!");
+        log.info("STEP 3: Verified the login page title.");
 
-        log.info("STEP 4: Use loginWithUserAndPassword method to login");
         loginPage.loginWithUSerAndPassword(username, password);
+        log.info("STEP 4: User is logged");
 
-        log.info("STEP 5: Interact with 'Remember Me' checkbox.");
         Assert.assertFalse(loginPage.isRememberMeCheckboxSelected(), "Checkbox is selected by default!");
+        log.info("STEP 5: 'Remember Me' checkbox is not checked.");
         loginPage.clickOnRememberMeCheckbox();
         Assert.assertTrue(loginPage.isRememberMeCheckboxSelected(), "Remember Me checkbox is not selected!");
+        log.info("STEP 6: 'Remember Me' checkbox is checked.");
 
-        log.info("STEP 6: Verify error message after failed login.");
         String actualLoginActionMSG = loginPage.getLoginActionMessage();
         Assert.assertEquals(actualLoginActionMSG, LOGIN_NOT_SUCCESSFUL_MSG, "Error message mismatch!");
+        log.info("STEP 7: Verified error message after failed login.");
 
-        log.info("STEP 7: Verify login submit button is still visible.");
         WebElement loginFormSubmitButton = loginPage.getLoginFormSubmitButton();
         Assert.assertTrue(loginFormSubmitButton.isDisplayed(), "Login form submit button is not visible!");
+        log.info("STEP 8: Verified login submit button is still visible.");
     }
 }

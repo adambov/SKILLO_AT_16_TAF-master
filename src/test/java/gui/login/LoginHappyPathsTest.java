@@ -24,47 +24,47 @@ public class LoginHappyPathsTest extends BaseTest {
 
         HomePage homePage = new HomePage(super.driver, log);
 
-        log.info("STEP 1: Not logged in user has opened the Skillo HomePage.");
         homePage.openHomePage();
+        log.info("STEP 1: Not logged in user has opened the Skillo HomePage.");
 
-        log.info("STEP 2: Verify the user is on the home page ");
         boolean isHomePageLoaded = homePage.isURLLoaded(HomePage.HOME_PAGE_URL);
         Assert.assertTrue(isHomePageLoaded, "User is not on the correct home page.");
+        log.info("STEP 2: Verified the user is on the home page ");
 
-        log.info("STEP 3: Verify that the login link is presented ");
         boolean isShownNavBarLoginLink = homePage.isNavLoginShown();
         Assert.assertTrue(isShownNavBarLoginLink);
+        log.info("STEP 3: Verified that the login link is presented ");
 
-        log.info("STEP 4: The user is navigating to the login page via click on navigation bar login link");
         homePage.clickOnNavBarLogin();
+        log.info("STEP 4: The user has navigated to the login page via click on navigation bar login link");
 
-        log.info("STEP 5: The user is successfully on the login page");
         LoginPage loginPage = new LoginPage(super.driver,log);
         boolean isLoginPageLoaded = homePage.isURLLoaded(loginPage.LOGIN_PAGE);
         Assert.assertTrue(isLoginPageLoaded, "User is not on the login page.");
+        log.info("STEP 5: The user is successfully on the login page");
 
-        log.info("STEP 6: Verify the login title");
         String actualLoginFormTitle = loginPage.getLoginPageFormTitle();
         Assert.assertEquals(actualLoginFormTitle,LOGIN_FORM_TITLE);
+        log.info("STEP 6: Verified the login title");
 
-        log.info("STEP 7: Use loginWithUserAndPassword method to login");
         loginPage.loginWithUSerAndPassword(username, password);
+        log.info("STEP 7: User has logged");
 
-        log.info("STEP 8: Click on checkbox");
         Assert.assertFalse(loginPage.isRememberMeCheckboxSelected(), "Checkbox is selected by default!");
         loginPage.clickOnRememberMeCheckbox();
         Assert.assertTrue(loginPage.isRememberMeCheckboxSelected(), "Remember Me checkbox is not selected!");
+        log.info("STEP 8: Clicked on checkbox");
 
-        log.info("STEP 9: Verify success message after successful login");
         String actualLoginActionMSG = loginPage.getLoginActionMessage();
         Assert.assertEquals(actualLoginActionMSG,LOGIN_SUCCESSFUL_MSG);
+        log.info("STEP 9: Verified success message after successful login");
 
-        log.info("STEP 10: Verifying that the logout button is visible and present on the page.");
         boolean isLogoutButtonVisible = homePage.isNavLogoutShown();
         Assert.assertTrue(isLogoutButtonVisible, "Logout button is visible on the page!");
+        log.info("STEP 10: Verified that the logout button is visible and present on the page.");
 
-        log.info("STEP 11: Verifying that the Profile button is visible and present on the page.");
         boolean isProfileButtonVisible = homePage.isNavProfileShown();
         Assert.assertTrue(isProfileButtonVisible, "Profile button is visible on the page!");
+        log.info("STEP 11: Verified that the Profile button is visible and present on the page.");
     }
 }
