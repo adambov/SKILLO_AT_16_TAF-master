@@ -18,53 +18,52 @@ public class PostTests extends BaseTest {
     public void verifyUserCanCreatePost() throws InterruptedException {
         HomePage homePage = new HomePage(super.driver, log);
 
-        log.info("Step 1: homepage is opened");
         homePage.openHomePage();
+        log.info("Step 1: homepage is opened");
 
-        log.info("Step 2: Click on Login");
         homePage.clickOnNavBarLogin();
+        log.info("Step 2: Clicked on Login");
 
-        log.info("Step 3: User logs in");
         LoginPage loginPage = new LoginPage(super.driver, log);
         loginPage.loginWithUSerAndPassword(testUser,testPassword);
+        log.info("Step 3: User logged in");
 
-        log.info("Step 4: User clicks on New Post in the navigation bar");
         homePage.clickOnNavBarNewPost();
+        log.info("Step 4: User clicked on New Post in the navigation bar");
 
-        log.info("Step 5: User uploads picture");
         PostPage postPage = new PostPage(super.driver, log);
         postPage.uploadPicture(postPicture);
+        log.info("Step 5: User uploaded picture");
 
-        log.info("Step 6: User provides post text/caption");
         postPage.providePostCaption(caption);
+        log.info("Step 6: User provided post text/caption");
 
-        log.info("Step 7: User sets post as private");
         postPage.clickPublicPrivateToggle();
+        log.info("Step 7: User has set post as private");
 
-        log.info("Step 8: User clicks create post button");
         postPage.clickCreatePostButton();
+        log.info("Step 8: User clicked create post button");
 
-        log.info("Steps 9: Click on All post filter");
         ProfilePage profilePage = new ProfilePage(super.driver, log);
         profilePage.clickOnAllPostFilterBtn();
+        log.info("Steps 9: User clicked on All post filter");
 
-        log.info("Step 10: Verify if post are than before");
         boolean isMorePostShown = profilePage.getPostCount() > 0;
         Assert.assertTrue(isMorePostShown);
         int lastPostIndex = profilePage.getLastPostIndex();
         profilePage.clickPost(lastPostIndex);
+        log.info("Step 10: Verified if post are than before");
 
-        log.info("Steps 11: Verify if post is private");
         PostModal postModal = new PostModal(super.driver, log);
         postModal.isPostPrivate();
+        log.info("Steps 11: Verified if post is private");
 
-        log.info("Step 12: Verify if post is visible");
         Assert.assertTrue(postModal.isImageVisible(), "The image is not visible!");
+        log.info("Step 12: Verified if post is visible");
 
-        log.info("Step 13: Verify if the user who created the post is the same with the username of the account");
         String postUserTxt = postModal.getPostUser();
         Assert.assertEquals(postUserTxt, testUser);
-
+        log.info("Step 13: Verified if the user who created the post is the same with the username of the account");
     }
 
     @Test(priority = 1)
@@ -74,40 +73,40 @@ public class PostTests extends BaseTest {
         ProfilePage profilePage = new ProfilePage(super.driver, log);
         int initialPostCount = profilePage.getPostCount();
 
-        log.info("The user has navigated to the Login page.");
         loginPage.navigateToLoginPage();
+        log.info("STEP 1: The user has navigated to the Login page.");
 
-        log.info("The user has logged in with username and password.");
         loginPage.loginWithUSerAndPassword(testUser, testPassword);
+        log.info("STEP 2: The user has logged with username and password.");
 
-        log.info("The user has navigated to the Profile page.");
         homePage.clickOnNavBarProfile();
+        log.info("STEP 3: The user has navigated to the Profile page.");
 
-        log.info("Click on All post filter");
         profilePage.clickOnAllPostFilterBtn();
         int finalPostCount = profilePage.getPostCount();
         int lastPostIndex = profilePage.getLastPostIndex();
+        log.info("STEP 4: Clicked on All post filter");
 
         try {
             profilePage.clickPost(lastPostIndex);
-            log.info("The user has clicked on the last post.");
+            log.info("STEP 5: The user has clicked on the last post.");
         } catch (IndexOutOfBoundsException e) {
-            log.error("No posts are available to click.");
+            log.error("STEP 5: No posts are available to click.");
             throw new IndexOutOfBoundsException();
         }
 
         profilePage.ClickOnDeleteButton();
-        log.info("The user has clicked on the Delete post button.");
+        log.info("STEP 6: The user has clicked on the Delete post button.");
 
         profilePage.ClickOnYesButton();
-        log.info("The user has confirmed the deletion.");
+        log.info("STEP 7: The user has confirmed the deletion.");
 
-        log.info("Verify deleted post message");
+        log.info("STEP 8: Verified deleted post message");
         profilePage.isDeletedMessageVisible();
 
-        log.info("Confirm whether the number of posts is one fewer.");
-        log.info("Initial number of posts: " + initialPostCount);
-        log.info("Final number of posts: " + finalPostCount);
         Assert.assertTrue(finalPostCount > initialPostCount, "The number of posts did not increase by 1.");
+        log.info("STEP 9: Confirmed whether the number of posts is one fewer.");
+        log.info("STEP 10: Initial number of posts: " + initialPostCount);
+        log.info("STEP 11: Final number of posts: " + finalPostCount);
     }
 }
