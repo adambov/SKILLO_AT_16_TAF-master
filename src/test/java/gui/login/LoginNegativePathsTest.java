@@ -21,6 +21,7 @@ public class LoginNegativePathsTest extends BaseTest {
         return new Object[][]{
                 {USERNAME, PASSWORD},
                 {" ", "Password123"},
+                {"Nasko197", "Password123"},
                 {"Nasko10", "Password9090"},
                 {"Nasko10", " "},
                 {" ", " "}
