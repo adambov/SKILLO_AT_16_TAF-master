@@ -116,7 +116,7 @@ STEP 3:
 Wait a bit the automation to start and after the test execution a report will be generated
 
 ## Bug report
-If you find any bugs that you want to report, please do so with the bug report and liveCicle explained:
+If you find any bugs that you want to report, please do so with the bug report and life cycle explained:
 
 1. Summary: Brief description of the bug.
 
@@ -130,5 +130,5 @@ If you find any bugs that you want to report, please do so with the bug report a
 
 ## Contact
 
-- [Skulo Student](mailto:atanas.dambov@gmail.com)
+- [Skillo Student](mailto:atanas.dambov@gmail.com)
 - Project Link: [TAF Selenium 4 TestNG 7 ](https://github.com/adambov/SKILLO_AT_16_TAF-master)
