@@ -14,32 +14,39 @@ public class likeAndDislikeRandomPostFromHomePage extends BaseTest {
     public void verifyUserCanLikeAndDislikeRandomPostFromHomePageAfterLogin() throws InterruptedException {
         HomePage homePage = new HomePage(super.driver, log);
 
-        log.info("User opens home page");
         homePage.openHomePage();
+        log.info("STEP 1: User opened home page");
 
-        log.info("Step 2: Click on Login");
         homePage.clickOnNavBarLogin();
-        log.info("Login with valid user account");
+        log.info("Step 2: User clicked on the Login button");
+
         LoginPage loginPage = new LoginPage(super.driver, log);
         loginPage.loginWithUSerAndPassword(testUser,testPassword);
-        log.info("User clicks on last post from home page");
+        log.info("Step 3: User has logged with valid user account");
+
         Thread.sleep(1111);
         homePage.clickOnRandomPostOnHomePageAfterLogin();
-        log.info("Verify if post is not already liked");
+        log.info("STEP 4: User clicked on random post from home page");
+
         homePage.verifyIfPostIsNotLiked();
+        log.info("STEP 5: Verified that post is not already liked");
+
         Thread.sleep(11111);
-        log.info("User clicks like button on the Post modal");
         homePage.clickLikeOnPostonHomePageAfterPostModalIsLoaded();
-        log.info("Verify if taost message after like says Post liked");
+        log.info("STEP 6: User clicked like button on the Post modal");
+
         String actualLikeToastMSG = homePage.getToatMSGTextAfterLikeOrDislike();
         String expctedLikeToastMSG = "Post liked";
         Assert.assertEquals(actualLikeToastMSG, expctedLikeToastMSG);
+        log.info("STEP 7: Verified taost message says Post is liked after post is like");
+
         Thread.sleep(11111);
-        log.info("User clicks again on like button to dislike the post");
         homePage.clickLikeOnPostonHomePageAfterPostModalIsLoaded();
-        log.info("Verify if taost message after dislike says Post disliked");
+        log.info("STEP 8: User clicked again on like button to dislike the post");
+
         String actualDisikeToastMSG = homePage.getToatMSGTextAfterLikeOrDislike();
         String expctedDislikeToastMSG = "Post disliked";
         Assert.assertEquals(actualDisikeToastMSG, expctedDislikeToastMSG);
+        log.info("STEP 9: Verifie if taost message after dislike says Post disliked");
     }
 }

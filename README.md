@@ -54,6 +54,7 @@ List of the test cases.
   
 - Users feature
     - Verify user can follow another user and access their private and all posts.
+    - Verify user can like and dislike a Random post on home page after login.
   
 ## Installation
 
