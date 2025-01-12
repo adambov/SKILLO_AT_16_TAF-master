@@ -6,6 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 
 
 public class HomePage extends BasePage {
@@ -42,6 +43,21 @@ public class HomePage extends BasePage {
 
     @FindBy (xpath = "//div[contains(@class, 'small-user-container')]//a[contains(text(), 'NaskoDambov')]")
     private WebElement searchedUsernamecontainer;
+
+    @FindBy (xpath = "//app-all-posts[@class='ng-star-inserted']")
+    private WebElement allPostsContainerHomePage;
+
+    @FindBy (xpath = "//div[@class='post-feed-img'][last()]")
+    private WebElement lastPostFromHomePage;
+
+    @FindBy (xpath = "//div[@class='modal-content']")
+    private WebElement postModalHomePage;
+
+    @FindBy (xpath = "//i[contains(@class, 'like far fa-heart')]")
+    private WebElement likeButtonHomePageModal;
+
+    @FindBy (xpath = "//div[contains(@id, 'toast-container')][last()]")
+    private WebElement toastMSGAfterPostLike;
 
     public HomePage(WebDriver driver, Logger log) {
         super(driver, log);
@@ -123,5 +139,35 @@ public class HomePage extends BasePage {
             isLikeMessageVisible = false;
         }
         return isLikeMessageVisible;
+    }
+
+    public void clickOnLastPostOnHomePageAfterLogin() {
+        waitPageTobeFullyLoaded();
+        lastPostFromHomePage.click();
+    }
+
+    public void clickLikeOnLastPostonHomePageAfterPostModalIsLoaded() {
+        waitPageTobeFullyLoaded();
+        likeButtonHomePageModal.click();
+    }
+
+    public String getToatMSGTextAfterLikeOrDislike () {
+        wait.until(ExpectedConditions.visibilityOf(toastMSGAfterPostLike));
+        String msg = toastMSGAfterPostLike.getText();
+        return msg;
+    }
+
+
+    public void verifyIfPostIsNotLiked () throws InterruptedException {
+        wait.until(ExpectedConditions.elementToBeClickable(likeButtonHomePageModal));
+        String buttonClass = likeButtonHomePageModal.getAttribute("class");
+        boolean isLiked = buttonClass.contains("liked");
+        if (isLiked) {
+            log.info("The post is already liked and it should not be liked. We disliking the Post at this point");
+            clickLikeOnLastPostonHomePageAfterPostModalIsLoaded();
+            Thread.sleep(11111);
+        } else {
+            log.info("The post is still not liked.");
+        }
     }
 }
