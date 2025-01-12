@@ -6,9 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.regData.RegistrationDataGenerator;
-
 import static utils.regData.RegistrationDataGenerator.*;
-
 
 public class RegistrationNegativePath extends BaseTest {
 
@@ -36,36 +34,39 @@ public class RegistrationNegativePath extends BaseTest {
     }
 
     @Test(dataProvider = "invalidDataProvidedForEachFieldSeparately")
-    public void validateUserCannotRegisterWithEvenOneInvalidField(String username, String email, String date, String password, String confirmPassword, String publicInfo) throws InterruptedException {
+    public void validateUserCannotRegisterWithEvenOneInvalidField(String username, String email, String date,
+                                                                  String password, String confirmPassword, String publicInfo) throws InterruptedException {
         RegistrationPage registrationPage = new RegistrationPage(super.driver, log);
-        log.info("Registration page is loaded");
+
         registrationPage.navigateToRegPage();
-        log.info("Verify registration form title");
+        log.info("STEP 1: Registration page is loaded");
+
         registrationPage.getRegFormTitle();
-        log.info("Verify if sign in button is disabled");
+        log.info("STEP 2: Verified registration form title");
+
         registrationPage.signUnButtonState();
         Assert.assertFalse(registrationPage.signUnButtonState(), "Button is enabled and it has to be disabled");
+        log.info("STEP 3: Verifid if sign in button is disabled");
 
-        log.info("Provide username");
         registrationPage.provideUserName(username);
+        log.info("STEP 4: Provided username");
 
-        log.info("Provide email");
         registrationPage.provideEmail(email);
+        log.info("STEP 5: Provided email");
 
-        log.info("Provide birth date");
         registrationPage.provideBirthDate(date);
+        log.info("STEP 6: Provided birth date");
 
-        log.info("Provide password");
         registrationPage.providePassword(password);
+        log.info("STEP 7: Provided password");
 
-        log.info("Provide confirm password");
         registrationPage.providePassword(confirmPassword);
+        log.info("STEP 8: Provided confirm password");
 
-        log.info("Provide public info");
         registrationPage.providePublicInfoText(publicInfo);
+        log.info("STEP 9: Provided public info");
 
-        log.info("Verify if sign in button is disabled");
         Assert.assertFalse(registrationPage.signUnButtonState(), "Button is enabled and it has to be disabled");
+        log.info("STEP 10: Verified if sign in button is disabled");
     }
-
 }
