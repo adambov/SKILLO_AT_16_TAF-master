@@ -41,7 +41,7 @@
             </class>
             <class name="gui.usersTest.likeAndDislikeRandomPostFromHomePage">
                 <methods>
-                    <include name="verifyUserCanLikeAndDislaikeRandomPostFromHomePageAfterLogin"/>
+                    <include name="verifyUserCanLikeAndDislikeRandomPostFromHomePageAfterLogin"/>
                 </methods>
             </class>
         </classes>

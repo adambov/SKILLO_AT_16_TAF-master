@@ -8,6 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
+import java.util.List;
+import java.util.Random;
+
 
 public class HomePage extends BasePage {
     public static final String HOME_PAGE_URL = "/posts/all";
@@ -46,9 +49,6 @@ public class HomePage extends BasePage {
 
     @FindBy (xpath = "//app-all-posts[@class='ng-star-inserted']")
     private WebElement allPostsContainerHomePage;
-
-    @FindBy (xpath = "//div[@class='post-feed-img'][last()]")
-    private WebElement lastPostFromHomePage;
 
     @FindBy (xpath = "//div[@class='modal-content']")
     private WebElement postModalHomePage;
@@ -141,12 +141,22 @@ public class HomePage extends BasePage {
         return isLikeMessageVisible;
     }
 
-    public void clickOnLastPostOnHomePageAfterLogin() {
+    public void clickOnRandomPostOnHomePageAfterLogin() {
         waitPageTobeFullyLoaded();
-        lastPostFromHomePage.click();
+        List<WebElement> posts = driver.findElements(By.cssSelector("app-post-detail"));
+        if (posts.size() > 0) {
+            Random rand = new Random();
+            int randomIndex = rand.nextInt(posts.size());
+
+            WebElement randomPost = posts.get(randomIndex);
+
+            randomPost.click();
+        } else {
+            System.out.println("There are no available posts");
+        }
     }
 
-    public void clickLikeOnLastPostonHomePageAfterPostModalIsLoaded() {
+    public void clickLikeOnPostonHomePageAfterPostModalIsLoaded() {
         waitPageTobeFullyLoaded();
         likeButtonHomePageModal.click();
     }
@@ -164,7 +174,7 @@ public class HomePage extends BasePage {
         boolean isLiked = buttonClass.contains("liked");
         if (isLiked) {
             log.info("The post is already liked and it should not be liked. We disliking the Post at this point");
-            clickLikeOnLastPostonHomePageAfterPostModalIsLoaded();
+            clickLikeOnPostonHomePageAfterPostModalIsLoaded();
             Thread.sleep(11111);
         } else {
             log.info("The post is still not liked.");
