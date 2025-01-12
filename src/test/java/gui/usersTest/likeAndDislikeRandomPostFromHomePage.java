@@ -13,7 +13,6 @@ public class likeAndDislikeRandomPostFromHomePage extends BaseTest{
 
     @Test
     public void verifyUserCanLikeAndDislaikeRandomPostFromHomePageAfterLogin() throws InterruptedException {
-        BasePage basePage = new BasePage(super.driver, log);
         HomePage homePage = new HomePage(super.driver, log);
 
         log.info("User opens home page");
@@ -29,6 +28,7 @@ public class likeAndDislikeRandomPostFromHomePage extends BaseTest{
         homePage.clickOnLastPostOnHomePageAfterLogin();
         log.info("Verify if post is not already liked");
         homePage.verifyIfPostIsNotLiked();
+        Thread.sleep(11111);
         log.info("User clicks like button on the Post modal");
         homePage.clickLikeOnLastPostonHomePageAfterPostModalIsLoaded();
         log.info("Verify if taost message after like says Post liked");
