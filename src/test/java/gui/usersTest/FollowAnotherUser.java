@@ -16,66 +16,67 @@ public class FollowAnotherUser extends BaseTest {
     public void verifyUserCanFollowAnotherUser () throws InterruptedException {
         BasePage basePage = new BasePage(super.driver, log);
         HomePage homePage = new HomePage(super.driver, log);
-        log.info("User opens home page");
-        homePage.openHomePage();
 
-        log.info("Step 2: Click on Login");
+        homePage.openHomePage();
+        log.info("STEP 1: User opened home page");
+
         homePage.clickOnNavBarLogin();
-        log.info("Login with valid user account");
+        log.info("STEP 2: Clicked on Login button");
+
         LoginPage loginPage = new LoginPage(super.driver, log);
         loginPage.loginWithUSerAndPassword(testUser,testPassword);
-        Thread.sleep(11111);
+        log.info("STEP 3: User is logged with a valid account");
 
-        log.info("User clicks on search field");
+        Thread.sleep(11111);
         homePage.clickOnSearchBar();
+        log.info("STEP 4: User clicked on search field");
 
-        log.info("Enter valid username in search bar");
         homePage.enterValidUsernameinSearchBar();
+        log.info("STEP 4: Entered valid username in search bar");
+
         Thread.sleep(11111);
-        log.info("Search result is entered and shown as expected");
         homePage.verifySearchResultIsShown();
+        log.info("STEP 5: Search result is entered and shown as expected");
 
-        log.info("User clicks on the correct search result");
+
         homePage.clickOnSearchResult();
-        Thread.sleep(11111);
+        log.info("STEP 6: User clicked on the correct search result");
 
-        log.info("Verify if Profile page is opened");
+        Thread.sleep(11111);
         String expectedURL = "http://training.skillo-bg.com:4300/users/8868";
         basePage.waitPageTobeFullyLoaded();
         String actualURL = driver.getCurrentUrl();
         Assert.assertEquals(actualURL, expectedURL, "EXPECTED PAGE NOT FOUND");
-        log.info("User is on the correct Profile page");
+        log.info("STEP 7: User is on the correct Profile page");
 
-        log.info("Verify if the searched user is not already followed and the follow button has follow text");
         ProfilePage profilePage = new ProfilePage(super.driver,log);
         profilePage.verifySearchedUserIsNotFollowed();
+        log.info("STEP 8: Verified if the searched user is not already followed and the follow button has follow text");
+
         Thread.sleep(22222);
-
-
-        log.info("Verify if All posts button is inactive");
         profilePage.verifyIfAllBtnisDisabled();
+        log.info("STEP 9: Verified if All posts button is inactive");
 
-        log.info("Verify if Private posts button is inactive");
         profilePage.verifyIfPrivateBtnIsDisabled();
+        log.info("STEP 9: Verified if Private posts button is inactive");
 
-        log.info("User clicks on follow button");
         profilePage.clickFollowBtn();
+        log.info("STEP 10: User clicked on follow button");
 
-        log.info("User verifies successful toast message");
         profilePage.verifySuccessfullFollow();
+        log.info("STEP 11: User verified successful toast message");
+
         Thread.sleep(22222);
-
-        log.info("Verify in follow button changed to unfollow");
         profilePage.verifyUnfollowTextBtn();
+        log.info("STEP 12: Verified if follow button changed to unfollow");
 
-        log.info("Verify if All posts button is active");
         profilePage.verifyIfAllBtnisEnabled();
+        log.info("STEP 13: Verified if All posts button is active");
 
-        log.info("User clicks on All posts button");
         profilePage.clickOnAllPostFilterBtn();
+        log.info("STEP 14: User clicked on All posts button");
 
-        log.info("Verify if Private posts button is active");
         profilePage.verifyIfPrivateBtnisEnabled();
-
+        log.info("STEP 14: Verified if Private posts button is active");
     }
 }
