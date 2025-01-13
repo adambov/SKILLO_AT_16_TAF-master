@@ -15,7 +15,7 @@ public class PostTests extends BaseTest {
     File postPicture = new File("src/test/resources/upload/n3Test.jpg");
 
     @Test(priority = 0)
-    public void verifyUserCanCreatePost() throws InterruptedException {
+    public void verifyUserCanCreatePost() {
         HomePage homePage = new HomePage(super.driver, log);
 
         homePage.openHomePage();
@@ -67,7 +67,7 @@ public class PostTests extends BaseTest {
     }
 
     @Test(priority = 1)
-    public void verifyUserCanDeletePost() throws IndexOutOfBoundsException, InterruptedException  {
+    public void verifyUserCanDeletePost() throws IndexOutOfBoundsException {
         HomePage homePage = new HomePage(super.driver, log);
         LoginPage loginPage = new LoginPage(super.driver, log);
         ProfilePage profilePage = new ProfilePage(super.driver, log);

@@ -29,7 +29,7 @@ public class LoginNegativePathsTest extends BaseTest {
     }
 
     @Test(dataProvider = "invalidCredentials")
-    public void verifyUserCannotLoginWithWrongUserNameOrPasswordOrInvalidEntries(String username, String password) throws InterruptedException {
+    public void verifyUserCannotLoginWithWrongUserNameOrPasswordOrInvalidEntries(String username, String password) {
         LoginPage loginPage = new LoginPage(super.driver, log);
 
         loginPage.navigateToLoginPage();

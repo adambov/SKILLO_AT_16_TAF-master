@@ -35,7 +35,7 @@ public class RegistrationNegativePath extends BaseTest {
 
     @Test(dataProvider = "invalidDataProvidedForEachFieldSeparately")
     public void validateUserCannotRegisterWithEvenOneInvalidField(String username, String email, String date,
-                                                                  String password, String confirmPassword, String publicInfo) throws InterruptedException {
+                                                                  String password, String confirmPassword, String publicInfo) {
         RegistrationPage registrationPage = new RegistrationPage(super.driver, log);
 
         registrationPage.navigateToRegPage();

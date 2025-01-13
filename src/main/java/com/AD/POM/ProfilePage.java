@@ -181,7 +181,7 @@ public class ProfilePage extends BasePage {
         String expectedBtnText = "Unfollow";
 
         if (actualText.equals(expectedBtnText)) {
-            log.info("THe button changed to UNFOLLOW");
+            log.info("The button changed to UNFOLLOW");
             return true;
         } else {
             log.info("The button stays follow and it should be UNFOLLOW");

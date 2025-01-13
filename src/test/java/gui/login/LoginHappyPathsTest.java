@@ -20,7 +20,7 @@ public class LoginHappyPathsTest extends BaseTest {
     }
 
     @Test(dataProvider = "invalidCredentials")
-    public void verifyLoginWithValidCredentials(String username, String password) throws InterruptedException {
+    public void verifyLoginWithValidCredentials(String username, String password) {
 
         HomePage homePage = new HomePage(super.driver, log);
 

@@ -105,6 +105,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean verifySearchResultIsShown() {
+        wait.until(ExpectedConditions.visibilityOf(searchResultContainer));
         wait.until(ExpectedConditions.elementToBeClickable(searchResultContainer));
         String actualUsername = searchedUsernamecontainer.getText();
         String expectedUsername = VALID_USERNAME;
@@ -118,10 +119,10 @@ public class HomePage extends BasePage {
     }
 
     public void clickOnSearchResult() {
-        wait.until(ExpectedConditions.elementToBeClickable(searchResultContainer));
+        wait.until(ExpectedConditions.visibilityOf(searchResultContainer));
         wait.until(ExpectedConditions.elementToBeClickable(searchedUsernamecontainer));
         searchedUsernamecontainer.click();
-
+        wait.until(ExpectedConditions.not(ExpectedConditions.urlToBe("http://training.skillo-bg.com:4300/posts/all")));
     }
 
     public void ClickOnLikeButton() {

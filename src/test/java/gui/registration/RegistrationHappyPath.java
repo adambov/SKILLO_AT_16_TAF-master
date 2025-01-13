@@ -13,7 +13,7 @@ public class RegistrationHappyPath extends BaseTest {
     private String REGISTRATION_SUCCESSFUL_MSG = "Successful register!";
 
     @Test
-    public void verifyUserCanRegisterWithValidData() throws InterruptedException {
+    public void verifyUserCanRegisterWithValidData() {
         RegistrationPage registrationPage = new RegistrationPage(super.driver,log);
         HomePage homePage = new HomePage(super.driver,log);
 
@@ -65,7 +65,5 @@ public class RegistrationHappyPath extends BaseTest {
         boolean isLogoutButtonVisible = homePage.isNavLogoutShown();
         Assert.assertTrue(isLogoutButtonVisible, "Profile button is visible on the page!");
         log.info("STEP 13: Verified that the Logout button is visible and present on the page.");
-
-        Thread.sleep(5555);
     }
 }
