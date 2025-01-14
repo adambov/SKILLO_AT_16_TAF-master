@@ -6,7 +6,7 @@ import gui.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class likeAndDislikeRandomPostFromHomePage extends BaseTest {
+public class LikeAndDislikeRandomPostFromHomePage extends BaseTest {
     public static final String testUser = "Nasko10";
     public static final String testPassword = "Password123";
 
