@@ -39,9 +39,9 @@
                     <include name="verifyUserCanFollowAnotherUser"/>
                 </methods>
             </class>
-            <class name="gui.usersTest.LikeAndDislikeRandomPostFromHomePage">
+            <class name="gui.usersTest.LikeAndDislikeLastPostFromHomePage">
                 <methods>
-                    <include name="verifyUserCanLikeAndDislikeRandomPostFromHomePageAfterLogin"/>
+                    <include name="verifyUserCanLikeAndDislikeLastPostFromHomePageAfterLogin"/>
                 </methods>
             </class>
         </classes>

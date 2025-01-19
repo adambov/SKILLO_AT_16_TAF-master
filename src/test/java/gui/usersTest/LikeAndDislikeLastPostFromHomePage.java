@@ -6,12 +6,12 @@ import gui.base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class LikeAndDislikeRandomPostFromHomePage extends BaseTest {
+public class LikeAndDislikeLastPostFromHomePage extends BaseTest {
     public static final String testUser = "Nasko10";
     public static final String testPassword = "Password123";
 
     @Test
-    public void verifyUserCanLikeAndDislikeRandomPostFromHomePageAfterLogin() throws InterruptedException {
+    public void verifyUserCanLikeAndDislikeLastPostFromHomePageAfterLogin() throws InterruptedException {
         HomePage homePage = new HomePage(super.driver, log);
 
         homePage.openHomePage();
@@ -25,8 +25,7 @@ public class LikeAndDislikeRandomPostFromHomePage extends BaseTest {
         homePage.waitForToastMessageToDisappear();
         log.info("Step 3: User has logged with valid user account");
 
-
-        homePage.clickOnRandomPostOnHomePageAfterLogin();
+        homePage.clickOnLastPostOnHomePageAfterLogin();
         log.info("STEP 4: User clicked on random post from home page");
 
         homePage.verifyIfPostIsNotLiked();

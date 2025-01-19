@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
-import java.util.Random;
-
 
 public class HomePage extends BasePage {
     public static final String HOME_PAGE_URL = "/posts/all";
@@ -57,6 +55,9 @@ public class HomePage extends BasePage {
 
     @FindBy (xpath = "//div[contains(@id, 'toast-container')][last()]")
     private WebElement toastMSGAfterPostLike;
+
+    @FindBy (xpath = "//div[@class='post-feed-img'][last()]")
+    private WebElement lastPost;
 
     public HomePage(WebDriver driver, Logger log) {
         super(driver, log);
@@ -142,19 +143,16 @@ public class HomePage extends BasePage {
         return isLikeMessageVisible;
     }
 
-    public void clickOnRandomPostOnHomePageAfterLogin() {
+    public void clickOnLastPostOnHomePageAfterLogin() {
         List<WebElement> posts = driver.findElements(By.cssSelector("app-post-detail"));
+
         if (posts.size() > 0) {
-            Random rand = new Random();
-            int randomIndex = rand.nextInt(posts.size());
-
-            WebElement randomPost = posts.get(randomIndex);
-
-            randomPost.click();
+            lastPost.click();
         } else {
             System.out.println("There are no available posts");
         }
     }
+
 
     public void clickLikeOnPostonHomePageAfterPostModalIsLoaded() {
         likeButtonHomePageModal.click();
