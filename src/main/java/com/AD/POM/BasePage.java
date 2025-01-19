@@ -25,15 +25,12 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(elm));
         wait.until(ExpectedConditions.elementToBeClickable(elm));
         elm.click();
-        waitPageTobeFullyLoaded();
     }
 
     public void waitAndTypeTextInField(WebElement textField, String inputText) {
         wait.until(ExpectedConditions.visibilityOf(textField));
         textField.clear();
         textField.sendKeys(inputText);
-
-        waitPageTobeFullyLoaded();
     }
 
     public String requestedUrl(String pageSuffix ) {
@@ -45,20 +42,21 @@ public class BasePage {
 
         driver.get(currentURL.toLowerCase());
         log.info("CONFIRM # The user has navigated to: " +currentURL);
-
-        waitPageTobeFullyLoaded();
     }
 
     public boolean isURLLoaded(String pageURL) {
-        waitPageTobeFullyLoaded();
         String fullURL = BASE_URL + pageURL;
         return wait.until(ExpectedConditions.urlContains(pageURL));
     }
 
-    public void waitPageTobeFullyLoaded() {
+    public void waitForPageAndProcessesToLoad() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("return document.readyState").equals("complete");
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(webDriver -> js.executeScript("return document.readyState").equals("complete"));
+        wait.until(webDriver -> (Boolean) js.executeScript("return (window.jQuery != null) && (jQuery.active === 0);"));
+        log.info("Page is fully loaded and all processes have stopped.");
     }
+
 
         public boolean isPresented(WebElement elm) {
         boolean isWebElmShown = false;

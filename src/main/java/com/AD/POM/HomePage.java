@@ -100,6 +100,7 @@ public class HomePage extends BasePage {
     }
 
     public void enterValidUsernameinSearchBar() {
+        wait.until(ExpectedConditions.visibilityOf(allPostsContainerHomePage));
         searchBar.sendKeys(VALID_USERNAME);
     }
 
@@ -142,7 +143,6 @@ public class HomePage extends BasePage {
     }
 
     public void clickOnRandomPostOnHomePageAfterLogin() {
-        waitPageTobeFullyLoaded();
         List<WebElement> posts = driver.findElements(By.cssSelector("app-post-detail"));
         if (posts.size() > 0) {
             Random rand = new Random();
@@ -157,7 +157,6 @@ public class HomePage extends BasePage {
     }
 
     public void clickLikeOnPostonHomePageAfterPostModalIsLoaded() {
-        waitPageTobeFullyLoaded();
         likeButtonHomePageModal.click();
     }
 

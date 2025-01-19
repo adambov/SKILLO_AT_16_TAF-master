@@ -157,28 +157,34 @@ public class ProfilePage extends BasePage {
         Assert.assertTrue(isDisabled, "The 'All posts' button is not disabled when it should be.");
     }
 
-    public void verifySearchedUserIsNotFollowed () {
+    public void verifySearchedUserIsNotFollowed() {
         wait.until(ExpectedConditions.elementToBeClickable(followBtn));
         String actualText = followBtn.getText();
         String expectedBtnText = "Follow";
 
         if (actualText.equals(expectedBtnText)) {
-            log.info("The button is in the correct State - FOLLOW");
+            log.info("The button is in the correct state - FOLLOW");
         } else {
             waitAndClickOnWebElement(followBtn);
-            log.info("The button is clicked so that it can go back to FOLLOW");
-        }
+            log.info("The button was clicked to set it back to FOLLOW");
 
+            wait.until(ExpectedConditions.textToBePresentInElement(followBtn, expectedBtnText));
+            log.info("The button text has successfully changed back to FOLLOW");
+
+            HomePage homePage = new HomePage(super.driver, log);
+            homePage.waitForToastMessageToDisappear();
+        }
     }
+
 
     public void clickFollowBtn() {
         waitAndClickOnWebElement(followBtn);
     }
 
     public boolean verifyUnfollowTextBtn () {
-        wait.until(ExpectedConditions.elementToBeClickable(followBtn));
-        String actualText = followBtn.getText();
         String expectedBtnText = "Unfollow";
+        wait.until(ExpectedConditions.textToBePresentInElement(followBtn, expectedBtnText));
+        String actualText = followBtn.getText();
 
         if (actualText.equals(expectedBtnText)) {
             log.info("The button changed to UNFOLLOW");

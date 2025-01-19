@@ -1,5 +1,6 @@
 package gui.usersTest;
 
+import com.AD.POM.BasePage;
 import com.AD.POM.HomePage;
 import com.AD.POM.LoginPage;
 import com.AD.POM.ProfilePage;
@@ -12,7 +13,7 @@ public class FollowAnotherUser extends BaseTest {
     public static final String testPassword = "Password123";
 
     @Test
-    public void verifyUserCanFollowAnotherUser () throws InterruptedException {
+    public void verifyUserCanFollowAnotherUser () {
         HomePage homePage = new HomePage(super.driver, log);
 
         homePage.openHomePage();
@@ -35,7 +36,6 @@ public class FollowAnotherUser extends BaseTest {
         homePage.enterValidUsernameinSearchBar();
         log.info("STEP 6: Entered valid username in search bar");
 
-        Thread.sleep(11111);
         homePage.verifySearchResultIsShown();
         log.info("STEP 7: Search result is entered and shown as expected");
 
@@ -51,7 +51,6 @@ public class FollowAnotherUser extends BaseTest {
         profilePage.verifySearchedUserIsNotFollowed();
         log.info("STEP 10: Verified if the searched user is not already followed and the follow button has follow text");
 
-        Thread.sleep(22222);
         profilePage.verifyIfAllBtnisDisabled();
         log.info("STEP 11: Verified if All posts button is inactive");
 
@@ -64,7 +63,6 @@ public class FollowAnotherUser extends BaseTest {
         profilePage.verifySuccessfullFollow();
         log.info("STEP 14: User verified successful toast message");
 
-        Thread.sleep(22222);
         profilePage.verifyUnfollowTextBtn();
         log.info("STEP 15: Verified if follow button changed to unfollow");
 
