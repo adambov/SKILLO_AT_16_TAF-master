@@ -1,6 +1,5 @@
 package gui.usersTest;
 
-import com.AD.POM.BasePage;
 import com.AD.POM.HomePage;
 import com.AD.POM.LoginPage;
 import com.AD.POM.ProfilePage;
