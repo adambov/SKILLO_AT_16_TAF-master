@@ -161,7 +161,13 @@ public class HomePage extends BasePage {
         likeButtonHomePageModal.click();
     }
 
-    public String getToatMSGTextAfterLikeOrDislike () {
+    public void waitForToastMessageToDisappear() {
+        wait.until(ExpectedConditions.invisibilityOf(toastMSGAfterPostLike));
+        log.info("Toast message is no longer visible.");
+    }
+
+
+    public String getToastMSGTextAfterLikeOrDislike () {
         wait.until(ExpectedConditions.visibilityOf(toastMSGAfterPostLike));
         String msg = toastMSGAfterPostLike.getText();
         return msg;
